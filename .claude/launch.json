@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "ecommerce-website",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "ecommerce-website", "run", "dev", "--", "-p", "3000"],
+      "port": 3000
+    },
+    {
+      "name": "productivity-dashboard",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "productivity-dashboard", "run", "dev", "--", "-p", "3001"],
+      "port": 3001
+    }
+  ]
+}
