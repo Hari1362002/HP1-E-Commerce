@@ -4,7 +4,7 @@ import FeatureStrip from "@/components/FeatureStrip";
 import ContactCTA from "@/components/ContactCTA";
 
 export const metadata = {
-  title: "About us — FURNICO",
+  title: "About us — NOOK",
 };
 
 const VALUES = [
@@ -43,7 +43,7 @@ export default function AboutPage() {
             <span className="text-brand-500">worth keeping</span>
           </h1>
           <p className="mt-5 max-w-lg text-sm leading-relaxed text-ink-500 sm:text-base">
-            FURNICO began in 2019 with one workshop, three sofa designs and a
+            NOOK began in 2019 with one workshop, three sofa designs and a
             frustration with furniture that falls apart in three years. Seven
             years later the idea has not changed — build things properly, sell
             them at a fair price, and stand behind them for a decade.

@@ -4,7 +4,7 @@ import ProductGrid from "@/components/ProductGrid";
 export const dynamic = "force-dynamic";
 
 export const metadata = {
-  title: "All products — FURNICO",
+  title: "All products — NOOK",
 };
 
 export default async function ProductsPage({ searchParams }) {

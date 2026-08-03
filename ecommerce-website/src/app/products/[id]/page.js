@@ -5,6 +5,7 @@ import { getProductBySlug, getProducts } from "@/lib/products";
 import { formatPrice } from "@/lib/format";
 import AddToCartForm from "@/components/AddToCartForm";
 import ProductCard from "@/components/ProductCard";
+import BackButton from "@/components/BackButton";
 
 export const dynamic = "force-dynamic";
 
@@ -21,22 +22,26 @@ export default async function ProductPage({ params }) {
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-12">
-      <nav className="flex items-center gap-2 text-xs text-ink-400">
-        <Link href="/" className="transition hover:text-brand-600">
-          Home
-        </Link>
-        <span>/</span>
-        <Link
-          href={`/products?category=${encodeURIComponent(product.category)}`}
-          className="transition hover:text-brand-600"
-        >
-          {product.category}
-        </Link>
-        <span>/</span>
-        <span className="text-ink-500">{product.name}</span>
-      </nav>
+      <div className="flex flex-wrap items-center gap-x-4 gap-y-3">
+        <BackButton />
 
-      <div className="mt-6 grid gap-10 lg:grid-cols-2 lg:gap-14">
+        <nav className="flex min-w-0 items-center gap-2 text-xs text-ink-400">
+          <Link href="/" className="transition hover:text-brand-600">
+            Home
+          </Link>
+          <span>/</span>
+          <Link
+            href={`/products?category=${encodeURIComponent(product.category)}`}
+            className="transition hover:text-brand-600"
+          >
+            {product.category}
+          </Link>
+          <span>/</span>
+          <span className="truncate text-ink-500">{product.name}</span>
+        </nav>
+      </div>
+
+      <div className="mt-8 grid gap-10 lg:grid-cols-2 lg:gap-14">
         <div className="relative aspect-square overflow-hidden rounded-3xl bg-cream-200">
           <Image
             src={product.image}

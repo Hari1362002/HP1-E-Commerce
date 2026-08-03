@@ -1,4 +1,4 @@
-# FURNICO — Furniture E-commerce Website
+# NOOK — Furniture E-commerce Website
 
 A modern furniture storefront built as a portfolio project: product catalogue with search and
 category filtering, product detail pages, a persistent cart, **email/password authentication**,
@@ -8,10 +8,12 @@ and a protected checkout flow.
 
 ## Features
 
-- **Landing page** — hero with search + stats, feature strip, category collections, best
-  sellers, about section, newsletter CTA, full footer
+- **Sticky header** — solid bar that separates from the page with a shadow on scroll, with
+  in-header search, tooltipped icon controls and a cart badge
+- **Landing page** — hero with stats, feature strip, category collections, best sellers,
+  about section, newsletter CTA, full footer
 - **Catalogue** — 14 products across 7 categories, live search and category filters
-- **Product pages** — full-bleed photo, material/dimension specs, related products
+- **Product pages** — back button, breadcrumbs, material/dimension specs, related products
 - **Cart** — persisted in `localStorage`, quantity controls, live subtotal
 - **Auth** — sign up, log in, log out with hashed passwords and httpOnly JWT sessions
 - **Protected checkout** — guests are redirected to log in and returned to checkout afterwards
@@ -28,7 +30,7 @@ npm install
 ### 2. Create `.env.local`
 
 ```bash
-MONGODB_URI=mongodb://127.0.0.1:27017/furnico
+MONGODB_URI=mongodb://127.0.0.1:27017/nook
 AUTH_SECRET=replace-with-a-long-random-string
 ```
 

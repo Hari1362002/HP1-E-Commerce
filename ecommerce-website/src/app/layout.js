@@ -18,7 +18,7 @@ const inter = Inter({
 });
 
 export const metadata = {
-  title: "FURNICO — Make you feel luxury",
+  title: "NOOK — Make you feel luxury",
   description:
     "Modern furniture for every room — sofas, chairs, lighting and more. A portfolio demo storefront built with Next.js, Tailwind CSS and MongoDB.",
 };

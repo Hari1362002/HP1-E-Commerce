@@ -28,7 +28,7 @@ export default function AboutSection() {
           Furniture worth keeping
         </h2>
         <p className="mt-4 text-sm leading-relaxed text-ink-500 sm:text-base">
-          FURNICO started in a single workshop with one idea: make furniture
+          NOOK started in a single workshop with one idea: make furniture
           good enough that nobody needs to replace it in three years. We work
           directly with the mills and workshops that build our pieces, which
           keeps the quality high and the price honest.

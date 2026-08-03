@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
+import Logo from "./Logo";
 
 /** Shared split layout for the login and signup screens. */
 export default function AuthShell({ title, subtitle, children, footer }) {
@@ -7,12 +7,7 @@ export default function AuthShell({ title, subtitle, children, footer }) {
     <div className="mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:px-6 lg:grid-cols-2 lg:items-center lg:py-20">
       <div className="order-2 lg:order-1">
         <div className="mx-auto w-full max-w-md">
-          <Link
-            href="/"
-            className="font-display text-xl font-semibold tracking-tight text-ink-900"
-          >
-            FURNI<span className="text-brand-500">CO</span>
-          </Link>
+          <Logo />
 
           <h1 className="mt-8 text-3xl font-semibold text-ink-900">{title}</h1>
           <p className="mt-2 text-sm text-ink-500">{subtitle}</p>

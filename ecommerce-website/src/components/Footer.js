@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Logo from "./Logo";
 
 const COLUMNS = [
   {
@@ -33,12 +34,7 @@ export default function Footer() {
       <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           <div className="lg:col-span-2">
-            <Link
-              href="/"
-              className="font-display text-xl font-semibold tracking-tight text-ink-900"
-            >
-              FURNI<span className="text-brand-500">CO</span>
-            </Link>
+            <Logo />
             <p className="mt-3 max-w-xs text-sm leading-relaxed text-ink-500">
               Modern furniture built from solid materials, designed in-house and
               delivered in three days.
@@ -90,7 +86,7 @@ export default function Footer() {
 
         <div className="mt-12 flex flex-col gap-3 border-t border-cream-300 pt-6 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-xs text-ink-400">
-            &copy; {new Date().getFullYear()} FURNICO. Portfolio demo — no real
+            &copy; {new Date().getFullYear()} NOOK. Portfolio demo — no real
             payments are processed.
           </p>
           <p className="text-xs text-ink-400">
