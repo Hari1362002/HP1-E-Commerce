@@ -1,36 +1,42 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import { Outfit, Inter } from "next/font/google";
 import "./globals.css";
 import { CartProvider } from "@/context/CartContext";
+import { AuthProvider } from "@/context/AuthContext";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const outfit = Outfit({
+  variable: "--font-outfit",
   subsets: ["latin"],
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata = {
-  title: "AurelStore — Demo E-commerce",
-  description: "A basic e-commerce storefront built with Next.js, Tailwind CSS and MongoDB.",
+  title: "FURNICO — Make you feel luxury",
+  description:
+    "Modern furniture for every room — sofas, chairs, lighting and more. A portfolio demo storefront built with Next.js, Tailwind CSS and MongoDB.",
 };
 
 export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${outfit.variable} ${inter.variable} h-full antialiased`}
     >
-      <body className="flex min-h-full flex-col bg-white text-slate-900">
-        <CartProvider>
-          <Navbar />
-          <main className="flex-1">{children}</main>
-          <Footer />
-        </CartProvider>
+      <body className="flex min-h-full flex-col bg-cream-100 text-ink-900">
+        <AuthProvider>
+          <CartProvider>
+            <Navbar />
+            <main className="flex-1">{children}</main>
+            <Footer />
+          </CartProvider>
+        </AuthProvider>
       </body>
     </html>
   );

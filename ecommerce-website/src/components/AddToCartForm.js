@@ -13,7 +13,7 @@ export default function AddToCartForm({ product }) {
   function handleAdd() {
     addItem(product, quantity);
     setAdded(true);
-    setTimeout(() => setAdded(false), 1500);
+    setTimeout(() => setAdded(false), 1600);
   }
 
   function handleBuyNow() {
@@ -22,23 +22,23 @@ export default function AddToCartForm({ product }) {
   }
 
   return (
-    <div className="mt-6 flex flex-col gap-4">
+    <div className="mt-7 flex flex-col gap-4">
       <div className="flex items-center gap-3">
-        <span className="text-sm font-medium text-slate-600">Quantity</span>
-        <div className="flex items-center rounded-full border border-slate-200">
+        <span className="text-sm font-medium text-ink-600">Quantity</span>
+        <div className="flex items-center rounded-full bg-white ring-1 ring-cream-300">
           <button
             type="button"
             onClick={() => setQuantity((q) => Math.max(1, q - 1))}
-            className="px-3 py-1.5 text-slate-600 hover:text-teal-600"
+            className="px-3.5 py-2 text-ink-500 transition hover:text-brand-600"
             aria-label="Decrease quantity"
           >
             −
           </button>
-          <span className="w-8 text-center text-sm">{quantity}</span>
+          <span className="w-8 text-center text-sm font-medium">{quantity}</span>
           <button
             type="button"
             onClick={() => setQuantity((q) => q + 1)}
-            className="px-3 py-1.5 text-slate-600 hover:text-teal-600"
+            className="px-3.5 py-2 text-ink-500 transition hover:text-brand-600"
             aria-label="Increase quantity"
           >
             +
@@ -50,16 +50,16 @@ export default function AddToCartForm({ product }) {
         <button
           type="button"
           onClick={handleAdd}
-          className="flex-1 rounded-full border border-slate-900 px-6 py-3 text-sm font-medium text-slate-900 transition hover:bg-slate-900 hover:text-white"
+          className="flex-1 rounded-full border border-ink-900 px-6 py-3 text-sm font-semibold text-ink-900 transition hover:bg-ink-900 hover:text-white"
         >
-          {added ? "Added ✓" : "Add to Cart"}
+          {added ? "Added to cart ✓" : "Add to cart"}
         </button>
         <button
           type="button"
           onClick={handleBuyNow}
-          className="flex-1 rounded-full bg-teal-600 px-6 py-3 text-sm font-medium text-white transition hover:bg-teal-700"
+          className="flex-1 rounded-full bg-brand-500 px-6 py-3 text-sm font-semibold text-white transition hover:bg-brand-600"
         >
-          Buy Now
+          Buy now
         </button>
       </div>
     </div>

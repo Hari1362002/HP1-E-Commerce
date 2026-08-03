@@ -1,19 +1,80 @@
 @import "tailwindcss";
 
+/*
+  FURNICO brand tokens.
+  Warm orange primary on a cream canvas, with a deep espresso ink for text.
+*/
 :root {
-  --background: #ffffff;
-  --foreground: #0f172a;
+  --background: #fdf7f0;
+  --foreground: #1f1a15;
+
+  --brand-50: #fef4ec;
+  --brand-100: #fde4d1;
+  --brand-200: #fac9a6;
+  --brand-300: #f7a770;
+  --brand-400: #f4883f;
+  --brand-500: #ef7222;
+  --brand-600: #db5d15;
+  --brand-700: #b34712;
+  --brand-800: #8a3810;
+  --brand-900: #6b2d0e;
+
+  --cream-50: #fffcf8;
+  --cream-100: #fdf7f0;
+  --cream-200: #f8ede0;
+  --cream-300: #f0dfcc;
+
+  --ink-400: #8c7f72;
+  --ink-500: #6b5f54;
+  --ink-600: #4a4139;
+  --ink-900: #1f1a15;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+
+  --color-brand-50: var(--brand-50);
+  --color-brand-100: var(--brand-100);
+  --color-brand-200: var(--brand-200);
+  --color-brand-300: var(--brand-300);
+  --color-brand-400: var(--brand-400);
+  --color-brand-500: var(--brand-500);
+  --color-brand-600: var(--brand-600);
+  --color-brand-700: var(--brand-700);
+  --color-brand-800: var(--brand-800);
+  --color-brand-900: var(--brand-900);
+
+  --color-cream-50: var(--cream-50);
+  --color-cream-100: var(--cream-100);
+  --color-cream-200: var(--cream-200);
+  --color-cream-300: var(--cream-300);
+
+  --color-ink-400: var(--ink-400);
+  --color-ink-500: var(--ink-500);
+  --color-ink-600: var(--ink-600);
+  --color-ink-900: var(--ink-900);
+
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-outfit);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  font-family: var(--font-inter), system-ui, sans-serif;
+}
+
+/* Headings use the geometric display face across the whole site. */
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-outfit), system-ui, sans-serif;
+  letter-spacing: -0.02em;
+}
+
+::selection {
+  background: var(--brand-200);
+  color: var(--ink-900);
 }

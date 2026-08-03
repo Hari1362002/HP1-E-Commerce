@@ -1,54 +1,116 @@
+import Image from "next/image";
+import Link from "next/link";
 import { notFound } from "next/navigation";
-import { connectDB } from "@/lib/mongodb";
-import Product from "@/lib/models/Product";
+import { getProductBySlug, getProducts } from "@/lib/products";
 import { formatPrice } from "@/lib/format";
 import AddToCartForm from "@/components/AddToCartForm";
-import ProductVisual from "@/components/ProductVisual";
+import ProductCard from "@/components/ProductCard";
 
 export const dynamic = "force-dynamic";
 
-async function getProduct(slug) {
-  await connectDB();
-  const product = await Product.findOne({ slug }).lean();
-  return product ? JSON.parse(JSON.stringify(product)) : null;
-}
-
 export default async function ProductPage({ params }) {
   const { id } = await params;
-  const product = await getProduct(id);
+  const product = await getProductBySlug(id);
 
   if (!product) notFound();
 
+  const all = await getProducts();
+  const related = all
+    .filter((p) => p.category === product.category && p.slug !== product.slug)
+    .slice(0, 4);
+
   return (
-    <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
-      <div className="grid gap-10 lg:grid-cols-2">
-        <div className="relative aspect-square overflow-hidden rounded-3xl">
-          <ProductVisual category={product.category} className="h-full w-full" />
+    <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-12">
+      <nav className="flex items-center gap-2 text-xs text-ink-400">
+        <Link href="/" className="transition hover:text-brand-600">
+          Home
+        </Link>
+        <span>/</span>
+        <Link
+          href={`/products?category=${encodeURIComponent(product.category)}`}
+          className="transition hover:text-brand-600"
+        >
+          {product.category}
+        </Link>
+        <span>/</span>
+        <span className="text-ink-500">{product.name}</span>
+      </nav>
+
+      <div className="mt-6 grid gap-10 lg:grid-cols-2 lg:gap-14">
+        <div className="relative aspect-square overflow-hidden rounded-3xl bg-cream-200">
+          <Image
+            src={product.image}
+            alt={product.name}
+            fill
+            sizes="(min-width: 1024px) 50vw, 100vw"
+            className="object-cover"
+            priority
+          />
         </div>
 
         <div className="flex flex-col">
-          <span className="text-sm font-medium text-teal-600">
+          <span className="text-xs font-semibold uppercase tracking-widest text-brand-600">
             {product.category}
           </span>
-          <h1 className="mt-2 text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">
+          <h1 className="mt-2 font-display text-3xl font-semibold text-ink-900 sm:text-4xl">
             {product.name}
           </h1>
-          <p className="mt-4 text-2xl font-semibold text-slate-900">
+          <p className="mt-4 font-display text-2xl font-semibold text-ink-900">
             {formatPrice(product.price)}
           </p>
-          <p className="mt-6 leading-relaxed text-slate-600">
+
+          <p className="mt-5 text-sm leading-relaxed text-ink-500">
             {product.description}
           </p>
 
+          {(product.material || product.dimensions) && (
+            <dl className="mt-6 grid gap-3 rounded-2xl bg-white p-5 ring-1 ring-cream-300/70 sm:grid-cols-2">
+              {product.material && (
+                <div>
+                  <dt className="text-xs text-ink-400">Material</dt>
+                  <dd className="mt-0.5 text-sm font-medium text-ink-900">
+                    {product.material}
+                  </dd>
+                </div>
+              )}
+              {product.dimensions && (
+                <div>
+                  <dt className="text-xs text-ink-400">Dimensions</dt>
+                  <dd className="mt-0.5 text-sm font-medium text-ink-900">
+                    {product.dimensions}
+                  </dd>
+                </div>
+              )}
+            </dl>
+          )}
+
           <AddToCartForm product={product} />
 
-          <p className="mt-6 text-sm text-slate-400">
+          <p className="mt-5 flex items-center gap-2 text-sm text-ink-400">
+            <span
+              className={`h-2 w-2 rounded-full ${
+                product.stock > 0 ? "bg-emerald-500" : "bg-red-400"
+              }`}
+            />
             {product.stock > 0
-              ? `${product.stock} in stock`
+              ? `In stock — ${product.stock} available`
               : "Currently out of stock"}
           </p>
         </div>
       </div>
+
+      {related.length > 0 && (
+        <section className="mt-20">
+          <h2 className="font-display text-2xl font-semibold text-ink-900">
+            You might also like
+          </h2>
+          <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-6 lg:grid-cols-4">
+            {related.map((item) => (
+              <ProductCard key={item._id} product={item} />
+            ))}
+          </div>
+        </section>
+      )}
     </div>
   );
 }
