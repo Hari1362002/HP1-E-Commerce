@@ -86,7 +86,7 @@ export default function Footer() {
 
         <div className="mt-12 flex flex-col gap-3 border-t border-cream-300 pt-6 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-xs text-ink-400">
-            &copy; {new Date().getFullYear()} NOOK. Portfolio demo — no real
+            &copy; {new Date().getFullYear()} HP. Portfolio demo — no real
             payments are processed.
           </p>
           <p className="text-xs text-ink-400">

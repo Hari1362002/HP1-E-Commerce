@@ -1,4 +1,4 @@
-# NOOK — Furniture E-commerce Website
+# HP — Furniture E-commerce Website
 
 A modern furniture storefront built as a portfolio project: product catalogue with search and
 category filtering, product detail pages, a persistent cart, **email/password authentication**,
@@ -30,7 +30,7 @@ npm install
 ### 2. Create `.env.local`
 
 ```bash
-MONGODB_URI=mongodb://127.0.0.1:27017/nook
+MONGODB_URI=mongodb://127.0.0.1:27017/hp-store
 AUTH_SECRET=replace-with-a-long-random-string
 ```
 

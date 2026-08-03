@@ -11,10 +11,10 @@ export default function Logo({ size = "md", onClick }) {
     <Link
       href="/"
       onClick={onClick}
-      aria-label="NOOK — home"
+      aria-label="HP — home"
       className={`font-display font-semibold tracking-tight text-ink-900 ${SIZES[size]}`}
     >
-      N<span className="text-brand-500">OOK</span>
+      H<span className="text-brand-500">P</span>
     </Link>
   );
 }

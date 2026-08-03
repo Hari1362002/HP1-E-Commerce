@@ -3,7 +3,7 @@ import LoginForm from "./LoginForm";
 import AuthFallback from "@/components/AuthFallback";
 
 export const metadata = {
-  title: "Log in — NOOK",
+  title: "Log in — HP",
 };
 
 /**
