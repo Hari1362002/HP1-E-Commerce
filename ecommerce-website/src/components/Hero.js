@@ -7,16 +7,21 @@ const STATS = [
   { value: "3 day", label: "Delivery time" },
 ];
 
+/**
+ * Full-bleed hero — it spans the whole viewport width rather than sitting
+ * inside a bordered card, so the landing page opens on a full edge-to-edge
+ * band of colour.
+ */
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden rounded-3xl bg-cream-50 ring-1 ring-cream-300/70">
-      {/* Warm arc behind the photo, desktop only */}
+    <section className="relative overflow-hidden bg-cream-50">
+      {/* Warm arc bleeding off the right edge, desktop only */}
       <div
-        className="pointer-events-none absolute -right-32 -top-32 hidden h-[32rem] w-[32rem] rounded-full bg-brand-500 lg:block"
+        className="pointer-events-none absolute -right-40 -top-40 hidden h-[38rem] w-[38rem] rounded-full bg-brand-500 lg:block"
         aria-hidden="true"
       />
 
-      <div className="relative grid items-center gap-8 p-6 sm:p-10 lg:grid-cols-2 lg:gap-12 lg:p-14">
+      <div className="relative mx-auto grid max-w-6xl items-center gap-10 px-4 py-12 sm:px-6 sm:py-16 lg:grid-cols-2 lg:gap-14 lg:py-24">
         {/* Copy always comes first so the fold shows the message, not the photo */}
         <div className="min-w-0">
           <span className="inline-flex items-center gap-2 rounded-full bg-brand-100 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-brand-700">

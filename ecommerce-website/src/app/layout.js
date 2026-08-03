@@ -1,6 +1,7 @@
 import { Outfit, Inter } from "next/font/google";
 import "./globals.css";
 import { CartProvider } from "@/context/CartContext";
+import { WishlistProvider } from "@/context/WishlistContext";
 import { AuthProvider } from "@/context/AuthContext";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -32,9 +33,11 @@ export default function RootLayout({ children }) {
       <body className="flex min-h-full flex-col bg-cream-100 text-ink-900">
         <AuthProvider>
           <CartProvider>
-            <Navbar />
-            <main className="flex-1">{children}</main>
-            <Footer />
+            <WishlistProvider>
+              <Navbar />
+              <main className="flex-1">{children}</main>
+              <Footer />
+            </WishlistProvider>
           </CartProvider>
         </AuthProvider>
       </body>

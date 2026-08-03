@@ -8,11 +8,14 @@ and a protected checkout flow.
 
 ## Features
 
-- **Sticky header** — solid bar that separates from the page with a shadow on scroll, with
-  in-header search, tooltipped icon controls and a cart badge
-- **Landing page** — hero with stats, feature strip, category collections, best sellers,
-  about section, newsletter CTA, full footer
-- **Catalogue** — 14 products across 7 categories, live search and category filters
+- **Sticky header** — solid bar that stays separated from the page, with in-header search,
+  tooltipped icon controls and cart/wishlist badges
+- **Landing page** — full-bleed hero with stats, feature strip, category collections, best
+  sellers, about section, newsletter CTA, full footer
+- **Catalogue** — 23 products across 7 categories, search and category filters
+- **Product cards** — quick add-to-cart on hover (always visible on touch screens) and a
+  wishlist toggle, neither of which navigates away from the grid
+- **Wishlist** — saved items persisted in `localStorage`, with move-to-cart
 - **Product pages** — back button, breadcrumbs, material/dimension specs, related products
 - **Cart** — persisted in `localStorage`, quantity controls, live subtotal
 - **Auth** — sign up, log in, log out with hashed passwords and httpOnly JWT sessions
@@ -127,7 +130,7 @@ right foundation for all four.
 
 ```
 public/images/
-├── products/                 14 furniture photos (Unsplash, free licence)
+├── products/                 23 furniture photos (Unsplash, free licence)
 └── site/                     hero + about imagery
 
 src/

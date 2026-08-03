@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useCart } from "@/context/CartContext";
+import { useWishlist } from "@/context/WishlistContext";
 import { useAuth } from "@/context/AuthContext";
 import Logo from "./Logo";
 import Tooltip from "./Tooltip";
@@ -34,6 +35,7 @@ function Icon({ d, className = "h-5 w-5" }) {
 
 const ICONS = {
   cart: "M6 7h12l-1 12H7L6 7Zm3 0V5.5a3 3 0 0 1 6 0V7",
+  heart: "M12 20s-7-4.5-7-9.5A4.5 4.5 0 0 1 12 8a4.5 4.5 0 0 1 7 2.5c0 5-7 9.5-7 9.5Z",
   user: "M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm-7 8a7 7 0 0 1 14 0",
   search: "M11 18a7 7 0 1 0 0-14 7 7 0 0 0 0 14Zm9 2-3.5-3.5",
   menu: "M4 7h16M4 12h16M4 17h16",
@@ -44,6 +46,7 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const { itemCount } = useCart();
+  const { count: wishlistCount } = useWishlist();
   const { user, loading, logout } = useAuth();
   const pathname = usePathname();
   const router = useRouter();
@@ -105,6 +108,25 @@ export default function Navbar() {
             >
               <Icon d={searchOpen ? ICONS.close : ICONS.search} />
             </button>
+          </Tooltip>
+
+          <Tooltip
+            label={
+              wishlistCount > 0 ? `Wishlist · ${wishlistCount}` : "Wishlist"
+            }
+          >
+            <Link
+              href="/wishlist"
+              aria-label="Wishlist"
+              className="relative block rounded-full p-2.5 text-ink-600 transition hover:bg-cream-100 hover:text-brand-600"
+            >
+              <Icon d={ICONS.heart} />
+              {wishlistCount > 0 && (
+                <span className="absolute right-1 top-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-brand-500 px-1 text-[10px] font-bold text-white">
+                  {wishlistCount}
+                </span>
+              )}
+            </Link>
           </Tooltip>
 
           <Tooltip label={itemCount > 0 ? `Cart · ${itemCount}` : "Cart"}>

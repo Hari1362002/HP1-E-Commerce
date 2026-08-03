@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
 import ProductCard from "./ProductCard";
 
 export default function ProductGrid({
@@ -8,6 +9,8 @@ export default function ProductGrid({
   initialCategory = "All",
   initialQuery = "",
 }) {
+  const router = useRouter();
+
   const categories = useMemo(
     () => ["All", ...new Set(products.map((p) => p.category))],
     [products]
@@ -16,10 +19,12 @@ export default function ProductGrid({
   const [active, setActive] = useState(
     categories.includes(initialCategory) ? initialCategory : "All"
   );
-  const [query, setQuery] = useState(initialQuery);
+
+  // Searching happens in the header; this page just reflects the ?q= it set.
+  const query = initialQuery.trim();
 
   const filtered = useMemo(() => {
-    const term = query.trim().toLowerCase();
+    const term = query.toLowerCase();
     return products.filter((p) => {
       const matchesCategory = active === "All" || p.category === active;
       const matchesQuery =
@@ -33,48 +38,56 @@ export default function ProductGrid({
 
   return (
     <div>
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <div className="flex flex-wrap gap-2">
-          {categories.map((category) => (
-            <button
-              key={category}
-              type="button"
-              onClick={() => setActive(category)}
-              className={`rounded-full px-4 py-1.5 text-sm font-medium transition ${
-                active === category
-                  ? "bg-ink-900 text-white"
-                  : "bg-white text-ink-500 ring-1 ring-cream-300 hover:text-brand-600 hover:ring-brand-300"
-              }`}
-            >
-              {category}
-            </button>
-          ))}
-        </div>
-
-        <div className="flex items-center gap-2 rounded-full bg-white px-4 py-2 ring-1 ring-cream-300 focus-within:ring-2 focus-within:ring-brand-500/40 sm:w-64">
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth={1.8}
-            strokeLinecap="round"
-            className="h-4 w-4 shrink-0 text-ink-400"
+      <div className="flex flex-wrap items-center gap-2">
+        {categories.map((category) => (
+          <button
+            key={category}
+            type="button"
+            onClick={() => setActive(category)}
+            className={`rounded-full px-4 py-1.5 text-sm font-medium transition ${
+              active === category
+                ? "bg-ink-900 text-white"
+                : "bg-white text-ink-500 ring-1 ring-cream-300 hover:text-brand-600 hover:ring-brand-300"
+            }`}
           >
-            <circle cx="11" cy="11" r="7" />
-            <path d="m20 20-3.5-3.5" />
-          </svg>
-          <input
-            type="search"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search products"
-            aria-label="Search products"
-            className="min-w-0 flex-1 bg-transparent text-sm text-ink-900 outline-none placeholder:text-ink-400"
-          />
-        </div>
+            {category}
+          </button>
+        ))}
       </div>
 
-      <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-6 lg:grid-cols-4">
+      {query && (
+        <div className="mt-4 flex flex-wrap items-center gap-2 text-sm text-ink-500">
+          <span>
+            Results for{" "}
+            <span className="font-medium text-ink-900">
+              &ldquo;{query}&rdquo;
+            </span>
+          </span>
+          <button
+            type="button"
+            onClick={() => router.push("/products")}
+            className="inline-flex items-center gap-1 rounded-full bg-cream-200 px-2.5 py-1 text-xs font-medium text-ink-600 transition hover:bg-cream-300"
+          >
+            Clear
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth={2.2}
+              strokeLinecap="round"
+              className="h-3 w-3"
+            >
+              <path d="M6 18 18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+      )}
+
+      <p className="mt-5 text-sm text-ink-400">
+        Showing {filtered.length} of {products.length} pieces
+      </p>
+
+      <div className="mt-5 grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-6 lg:grid-cols-4">
         {filtered.map((product) => (
           <ProductCard key={product._id} product={product} />
         ))}
