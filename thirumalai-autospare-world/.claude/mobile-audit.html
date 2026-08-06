@@ -1,0 +1,79 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>mobile audit</title>
+<style>body{background:#0B0D0F;color:#ddd;font:12px/1.5 monospace;padding:16px;margin:0}
+pre{white-space:pre-wrap}.bad{color:#ff5b5b}.warn{color:#ffb020}.ok{color:#17B26A}
+iframe{width:375px;height:812px;border:0;position:absolute;left:-9999px}</style></head><body>
+<pre id="out">auditing…</pre>
+<script>
+const PAGES=['index.html','brands.html','brand.html?b=hero','model.html?b=hero&m=splendor-plus',
+ 'products.html','product-details.html?p=TAW-HRSPL-CL10','cart.html','checkout.html'];
+const out=document.getElementById('out');
+const L=[];
+
+function audit(w,d,label){
+  const res={page:label,issues:[]};
+  const vw=d.documentElement.clientWidth;
+
+  // 1. horizontal overflow
+  const sw=d.documentElement.scrollWidth;
+  if(sw>vw+1) res.issues.push(['BAD','page scrolls horizontally: '+sw+'px vs '+vw+'px viewport']);
+
+  // 2. which elements stick out
+  const wide=[];
+  d.querySelectorAll('body *').forEach(el=>{
+    if(el.closest('.mnav')) return;          // closed drawer is parked off-screen on purpose
+    const r=el.getBoundingClientRect();
+    if(r.width>0 && (r.right>vw+1||r.left<-1)){
+      const sel=el.tagName.toLowerCase()+(el.className&&typeof el.className==='string'?'.'+el.className.trim().split(/\s+/).slice(0,2).join('.'):'');
+      wide.push(sel+' ['+Math.round(r.left)+'→'+Math.round(r.right)+']');
+    }
+  });
+  [...new Set(wide)].slice(0,8).forEach(s=>res.issues.push(['BAD','overflows: '+s]));
+
+  // 3. tiny text
+  const tiny={};
+  d.querySelectorAll('body *').forEach(el=>{
+    if(el.closest('.mnav')||el.closest('.mega')) return;   // off-screen / desktop-only
+    if(!el.textContent.trim()||el.children.length) return;
+    if(!el.getBoundingClientRect().width) return;           // not rendered
+    const fs=parseFloat(getComputedStyle(el).fontSize);
+    if(fs<11.5){ const k=(el.className||el.tagName)+' @'+fs.toFixed(1)+'px'; tiny[k]=(tiny[k]||0)+1; }
+  });
+  Object.entries(tiny).slice(0,6).forEach(([k,n])=>res.issues.push(['WARN','text under 11px ×'+n+': '+k]));
+
+  // 4. small tap targets — primary controls only, not inline text links
+  const small={};
+  d.querySelectorAll('.btn,.chip,.iconbtn,button,input,select,.part-card__wish,.tab,.qty button').forEach(el=>{
+    if(el.closest('.mnav')) return;
+    const r=el.getBoundingClientRect();
+    if(r.width<=0||r.height<=0) return;
+    if(r.height<44){
+      const k=(el.className&&typeof el.className==='string'?el.className.trim().split(/\s+/)[0]:el.tagName)
+        +' '+Math.round(r.width)+'×'+Math.round(r.height);
+      small[k]=(small[k]||0)+1;
+    }
+  });
+  Object.entries(small).slice(0,8).forEach(([k,n])=>res.issues.push(['WARN','tap target <44px ×'+n+': '+k]));
+
+  return res;
+}
+
+(async()=>{
+ for(const p of PAGES){
+   await new Promise(done=>{
+     const f=document.createElement('iframe'); f.src='/'+p;
+     f.onload=()=>{ setTimeout(()=>{
+       try{ L.push(audit(f.contentWindow,f.contentDocument,p)); }
+       catch(e){ L.push({page:p,issues:[['BAD','audit failed: '+e.message]]}); }
+       f.remove();
+       out.innerHTML=L.map(r=>'\n=== '+r.page+' ===\n'+(r.issues.length
+         ? r.issues.map(([lv,m])=>'  <span class="'+(lv==='BAD'?'bad':'warn')+'">'+lv+'</span>  '+m).join('\n')
+         : '  <span class="ok">clean</span>')).join('\n');
+       done();
+     },700); };
+     f.onerror=()=>{L.push({page:p,issues:[['BAD','load error']]});f.remove();done();};
+     document.body.appendChild(f);
+   });
+ }
+ out.innerHTML+='\n\nDONE';
+})();
+</script></body></html>

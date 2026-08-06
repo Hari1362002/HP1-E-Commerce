@@ -240,13 +240,13 @@ const UI = {
 
     return `
       <article class="part-card" data-part="${p.id}">
-        <div class="part-card__pic">
-          ${this.partPic(p)}
-          <div class="part-card__flags">${flags.join('')}</div>
-        </div>
+        <div class="part-card__pic">${this.partPic(p)}</div>
         <button class="part-card__wish ${wished ? 'is-on' : ''}" data-wish="${p.id}"
                 aria-label="Save to wishlist" title="Save to wishlist">${ICO.heart}</button>
         <div class="part-card__body">
+          <!-- lives in the body so it has room to sit inline on phones;
+               absolutely positioned over the image on wider screens -->
+          <div class="part-card__flags">${flags.join('')}</div>
           <div class="part-card__sku">${p.sku}</div>
           <a class="part-card__name stretch" href="product-details.html?p=${encodeURIComponent(p.id)}">
             ${esc(p.shortName)}
@@ -398,7 +398,8 @@ const Shell = {
           <a class="iconbtn" href="products.html?wish=1" aria-label="Wishlist" title="Wishlist">
             ${ICO.heart}<span class="iconbtn__count" data-count="wish"></span>
           </a>
-          <a class="iconbtn" href="admin/login.html" aria-label="Account" title="Dealer login">${ICO.user}</a>
+          <a class="iconbtn iconbtn--account" href="admin/login.html"
+             aria-label="Dealer login" title="Dealer login">${ICO.user}</a>
           <a class="iconbtn" href="cart.html" aria-label="Cart" title="Cart">
             ${ICO.cart}<span class="iconbtn__count" data-count="cart"></span>
           </a>
