@@ -2,6 +2,12 @@
   "version": "0.0.1",
   "configurations": [
     {
+      "name": "portfolio",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "portfolio", "run", "dev", "--", "-p", "3002"],
+      "port": 3002
+    },
+    {
       "name": "ecommerce-website",
       "runtimeExecutable": "npm",
       "runtimeArgs": ["--prefix", "ecommerce-website", "run", "dev", "--", "-p", "3000"],
@@ -12,6 +18,18 @@
       "runtimeExecutable": "npm",
       "runtimeArgs": ["--prefix", "productivity-dashboard", "run", "dev", "--", "-p", "3001"],
       "port": 3001
+    },
+    {
+      "name": "thirumalai-autospare-world",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["thirumalai-autospare-world/.claude/serve.js"],
+      "port": 8123
+    },
+    {
+      "name": "image-resizer",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["image-resizer/.claude/serve.js"],
+      "port": 8124
     }
   ]
 }

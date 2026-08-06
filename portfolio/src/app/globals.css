@@ -1,0 +1,177 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------
+   Two moods, one site.
+   `.mode-dev`   — paper, ink, a single hot accent. Editorial.
+   `.mode-video` — the lights go down. Cinema.
+   Both are driven off the same five tokens so every component
+   below can stay mode-agnostic.
+   --------------------------------------------------------------- */
+
+:root {
+  --paper: #f2f0ea;
+  --ink: #0d0d0c;
+  --muted: #6f6c64;
+  --rule: #d9d5ca;
+  --accent: #ff3d00;
+  --card: #ffffff;
+}
+
+/* The mode wrapper is server-rendered, so `:has()` lets the palette land on
+   the first paint — no theme script, no hydration mismatch, no flash. */
+html:has(.mode-video) {
+  --paper: #0b0b0c;
+  --ink: #f4f3ef;
+  --muted: #8d8a83;
+  --rule: #232325;
+  --accent: #ffcc00;
+  --card: #141416;
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-rule: var(--rule);
+  --color-accent: var(--accent);
+  --color-card: var(--card);
+
+  --font-display: var(--font-anton);
+  --font-serif: var(--font-instrument);
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-jetbrains);
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Anchor jumps must clear the sticky header — two rows of it on mobile. */
+section[id],
+footer[id] {
+  scroll-margin-top: 7.5rem;
+}
+
+@media (min-width: 640px) {
+  section[id],
+  footer[id] {
+    scroll-margin-top: 6rem;
+  }
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-inter), system-ui, sans-serif;
+  transition: background-color 0.6s ease, color 0.6s ease;
+  overflow-x: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* --- Display type -------------------------------------------------
+   Anton is a single-weight condensed grotesque. It only works at
+   size, uppercase and tight — so that treatment is baked in here
+   rather than repeated as utility soup on every heading.
+   ------------------------------------------------------------------ */
+.display {
+  font-family: var(--font-anton), Impact, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: -0.015em;
+  line-height: 0.85;
+  font-weight: 400;
+}
+
+/* The counter-voice: a serif italic, lowercase, for the word inside a
+   headline that shouldn't shout. */
+.script {
+  font-family: var(--font-instrument), Georgia, serif;
+  font-style: italic;
+  text-transform: none;
+  letter-spacing: -0.01em;
+  font-weight: 400;
+}
+
+/* Outlined display type — the second line of the hero. */
+.outline {
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--ink);
+  paint-order: stroke fill;
+}
+
+@media (min-width: 768px) {
+  .outline {
+    -webkit-text-stroke-width: 2px;
+  }
+}
+
+.label {
+  font-family: var(--font-jetbrains), monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.6875rem;
+  font-weight: 500;
+}
+
+/* --- Marquee ------------------------------------------------------ */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 32s linear infinite;
+}
+
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+/* --- Entrance ----------------------------------------------------- */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.rise {
+  animation: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* --- Selection & focus -------------------------------------------- */
+::selection {
+  background: var(--accent);
+  color: var(--paper);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
