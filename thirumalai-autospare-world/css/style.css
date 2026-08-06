@@ -723,19 +723,30 @@ main { flex: 1 0 auto; }
 .hero__badge--2 { bottom: 16%; right: 2%; }
 
 /* Scrolling marquee under hero */
+/* Real scroll container, not a transform animation — CSS animations get
+   frozen by iOS Low Power Mode and Reduce Motion. JS advances scrollLeft,
+   so it still auto-scrolls, and the user can always swipe it by hand. */
 .marquee {
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
   background: var(--red);
   border-block: 1px solid rgba(0,0,0,.3);
   padding: 11px 0;
   white-space: nowrap;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;   /* stop iOS swipe-back hijacking it */
+  cursor: grab;
 }
+.marquee::-webkit-scrollbar { display: none; }
+.marquee:active { cursor: grabbing; }
+
 .marquee__track {
   display: inline-flex;
   align-items: center;
   gap: 42px;
-  animation: slide 34s linear infinite;
-  will-change: transform;
+  padding-left: 42px;
 }
 .marquee span {
   font-family: 'Barlow Condensed', sans-serif;
@@ -754,10 +765,8 @@ main { flex: 1 0 auto; }
   background: rgba(255,255,255,.55);
   transform: rotate(45deg);
 }
-@keyframes slide { to { transform: translateX(-50%); } }
-@media (prefers-reduced-motion: reduce) {
-  .marquee__track { animation: none; }
-}
+/* Auto-advance is driven by JS (see initMarquee) and honours
+   prefers-reduced-motion there — swiping stays available either way. */
 
 /* ---------- 11. FITMENT FINDER ---------- */
 .finder {

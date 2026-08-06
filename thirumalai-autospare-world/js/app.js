@@ -590,6 +590,67 @@ const Shell = {
   }
 };
 
+/* ==========================================================================
+   Marquee — auto-scrolling ticker that is also a real scroll container.
+
+   A CSS transform animation was unreliable: iOS Low Power Mode and
+   "Reduce Motion" freeze it with no fallback, leaving a dead strip. Driving
+   scrollLeft from rAF keeps it moving, and because it is a genuine scroll
+   container the user can always swipe it by hand — even when auto-scroll
+   is off. rAF also stops on its own in background tabs, so it costs nothing.
+
+   The track's content must be duplicated exactly twice; we wrap at the
+   halfway mark, which makes the loop seamless.
+   ========================================================================== */
+function initMarquee(el, pxPerSec = 55) {
+  if (!el || el.dataset.marqueeOn) return;
+  el.dataset.marqueeOn = '1';
+
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let pos = 0, last = 0, paused = false, raf = 0;
+
+  const half = () => (el.scrollWidth - el.clientWidth) > 0
+    ? el.scrollWidth / 2
+    : 0;
+
+  /* pause while the user is interacting, resume shortly after */
+  let resumeTimer;
+  const hold  = () => { paused = true; clearTimeout(resumeTimer); };
+  const release = () => {
+    clearTimeout(resumeTimer);
+    resumeTimer = setTimeout(() => { pos = el.scrollLeft; paused = false; }, 1600);
+  };
+
+  el.addEventListener('pointerdown', hold);
+  el.addEventListener('pointerup', release);
+  el.addEventListener('pointercancel', release);
+  el.addEventListener('touchstart', hold, { passive: true });
+  el.addEventListener('touchend', release, { passive: true });
+  el.addEventListener('mouseenter', hold);
+  el.addEventListener('mouseleave', release);
+  /* a manual wheel/trackpad scroll also counts as interaction */
+  el.addEventListener('scroll', () => { if (paused) pos = el.scrollLeft; }, { passive: true });
+
+  function tick(now) {
+    raf = requestAnimationFrame(tick);
+    if (!last) { last = now; return; }
+    const dt = Math.min((now - last) / 1000, 0.05);   // clamp after tab-switch
+    last = now;
+    if (paused) return;
+
+    const h = half();
+    if (h <= 0) return;
+    pos += pxPerSec * dt;
+    if (pos >= h) pos -= h;
+    el.scrollLeft = pos;
+  }
+
+  if (!reduce) raf = requestAnimationFrame(tick);
+
+  /* stop cleanly if the strip is removed */
+  return () => cancelAnimationFrame(raf);
+}
+
 /* ---------- Fitment finder (brand → model → go) ---------- */
 function wireFinder(root) {
   const bSel = $('[data-finder="brand"]', root);

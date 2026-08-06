@@ -20,6 +20,7 @@
   ];
   const row = lines.map(t => `<span>${t}</span>`).join('');
   $('#marquee').innerHTML = row + row;   // duplicated for a seamless loop
+  initMarquee($('#marquee').parentElement);
 
   /* ---- fitment finder ---- */
   wireFinder($('#finder'));
