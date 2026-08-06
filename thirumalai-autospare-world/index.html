@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Thirumalai Autospare World — Two-Wheeler Spare Parts</title>
+<meta name="description" content="Genuine and OEM-grade spare parts for Hero, Honda, Yamaha, Bajaj, TVS, Royal Enfield, Suzuki and KTM. Pick your bike model and see only the parts that fit.">
+<meta name="theme-color" content="#08090A">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=2">
+</head>
+<body data-page="home">
+
+<div data-shell="header"></div>
+
+<main>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero gridtex">
+    <div class="wrap hero__in">
+      <div class="hero__copy">
+        <span class="hero__eyebrow"><b>Since 2010</b> 2,400+ parts in stock</span>
+
+        <h1>
+          Every Part.<br>
+          <em>Every Bike.</em>
+          <span class="outline">One Counter.</span>
+        </h1>
+
+        <p class="hero__lede">
+          Engine oil to clutch cables, brake pads to full chain kits — stocked for
+          every Hero, Honda, Yamaha, Bajaj, TVS, Royal Enfield, Suzuki and KTM on
+          Indian roads. Choose your bike, and we show you only what actually fits it.
+        </p>
+
+        <div class="hero__cta">
+          <a class="btn btn--primary btn--lg" href="brands.html">
+            Shop by Your Bike <span aria-hidden="true">→</span>
+          </a>
+          <a class="btn btn--ghost btn--lg" href="products.html">Browse All Parts</a>
+        </div>
+
+        <div class="hero__stats">
+          <div class="hero__stat"><b id="statParts">2400</b><span>Parts in Stock</span></div>
+          <div class="hero__stat"><b id="statModels">60</b><span>Bike Models</span></div>
+          <div class="hero__stat"><b id="statYears">16</b><span>Years in Trade</span></div>
+        </div>
+      </div>
+
+      <div class="hero__art">
+        <div class="hero__art-glow"></div>
+        <div id="heroBike"></div>
+        <div class="hero__badge hero__badge--1"><b>100% Fitment</b><span>Guaranteed or Refunded</span></div>
+        <div class="hero__badge hero__badge--2"><b>24 Hr Dispatch</b><span>All India Shipping</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MARQUEE ============ -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__track" id="marquee"></div>
+  </div>
+
+  <!-- ============ FITMENT FINDER ============ -->
+  <section class="section section--tight">
+    <div class="wrap">
+      <div class="finder reveal" id="finder">
+        <div class="finder__head">
+          <span id="finderIco"></span>
+          <div>
+            <h4>Find Parts That Fit Your Bike</h4>
+            <p>Select your brand and model — we'll filter the catalogue down to genuine fitments only.</p>
+          </div>
+        </div>
+        <div class="finder__body">
+          <div class="field">
+            <label for="fBrand">Bike Brand</label>
+            <select id="fBrand" data-finder="brand"></select>
+          </div>
+          <div class="field">
+            <label for="fModel">Model</label>
+            <select id="fModel" data-finder="model" disabled></select>
+          </div>
+          <button class="btn btn--primary" data-finder="go" style="height:44px">Find Parts</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SHOP BY BIKE BRAND ============ -->
+  <section class="section section--alt">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="section-head__l">
+          <span class="section-head__num">01 / SHOP BY BIKE</span>
+          <h2>Pick Your Brand</h2>
+          <p>Eight manufacturers, sixty-plus models. Click a brand to see every bike we
+             stock parts for — then click the bike to see the parts.</p>
+        </div>
+        <a class="section-head__link" href="brands.html">All Brands →</a>
+      </div>
+      <div class="brand-grid reveal" id="brandGrid"></div>
+    </div>
+  </section>
+
+  <!-- ============ POPULAR MODELS ============ -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="section-head__l">
+          <span class="section-head__num">02 / MOST SEARCHED</span>
+          <h2>Popular Bike Models</h2>
+          <p>The bikes our counter sees most. Every one has its full parts list ready.</p>
+        </div>
+        <a class="section-head__link" href="brands.html">See All Models →</a>
+      </div>
+      <div class="model-grid reveal" id="popularModels"></div>
+    </div>
+  </section>
+
+  <!-- ============ SHOP BY CATEGORY ============ -->
+  <section class="section section--alt">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="section-head__l">
+          <span class="section-head__num">03 / SHOP BY PART</span>
+          <h2>Browse By Category</h2>
+          <p>Know what you need? Go straight to the shelf.</p>
+        </div>
+        <a class="section-head__link" href="products.html">All Categories →</a>
+      </div>
+      <div class="cat-grid reveal" id="catGrid"></div>
+    </div>
+  </section>
+
+  <!-- ============ BESTSELLERS ============ -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="section-head__l">
+          <span class="section-head__num">04 / FAST MOVING</span>
+          <h2>Bestsellers This Month</h2>
+          <p>Fast-moving stock — the parts that leave the shelf every single day.</p>
+        </div>
+        <a class="section-head__link" href="products.html?sort=popular">View All →</a>
+      </div>
+      <div class="part-grid reveal" id="bestGrid"></div>
+    </div>
+  </section>
+
+  <!-- ============ OFFERS BAND ============ -->
+  <div class="hazard"></div>
+  <section class="section section--alt">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="section-head__l">
+          <span class="section-head__num">05 / PRICE DROP</span>
+          <h2>This Week's Offers</h2>
+          <p>Genuine stock, marked down. While it lasts.</p>
+        </div>
+        <a class="section-head__link" href="products.html?deals=1">All Offers →</a>
+      </div>
+      <div class="part-grid reveal" id="dealGrid"></div>
+    </div>
+  </section>
+
+  <!-- ============ WHY US ============ -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="section-head__l">
+          <span class="section-head__num">06 / WHY THIRUMALAI</span>
+          <h2>Built On A Workshop Floor</h2>
+          <p>We have sold parts across a counter since 2010. The website works the way
+             the counter does — you tell us the bike, we hand you the right part.</p>
+        </div>
+      </div>
+      <div class="feat-grid reveal" id="featGrid"></div>
+    </div>
+  </section>
+
+</main>
+
+<div data-shell="footer"></div>
+
+<script src="js/art.js?v=2"></script>
+<script src="js/data.js?v=2"></script>
+<script src="js/app.js?v=2"></script>
+<script src="js/home.js?v=2"></script>
+</body>
+</html>

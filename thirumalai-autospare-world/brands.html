@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shop by Bike Brand — Thirumalai Autospare World</title>
+<meta name="description" content="Choose your motorcycle or scooter brand — Hero, Honda, Yamaha, Bajaj, TVS, Royal Enfield, Suzuki, KTM — and see every model we stock parts for.">
+<meta name="theme-color" content="#08090A">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=2">
+</head>
+<body data-page="brands">
+
+<div data-shell="header"></div>
+
+<main>
+  <section class="pagehead gridtex">
+    <div class="wrap">
+      <div id="crumb"></div>
+      <span class="section-head__num">SHOP BY BIKE</span>
+      <h1>Find Your Machine</h1>
+      <p class="muted" style="max-width:62ch;margin-top:12px">
+        Eight manufacturers. Every model we carry stock for. Pick your brand, pick your
+        bike, and the catalogue narrows to parts that are confirmed to fit it —
+        nothing else.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="wrap">
+      <div class="finder reveal" id="finder">
+        <div class="finder__head">
+          <span id="finderIco"></span>
+          <div>
+            <h4>Jump Straight To Your Bike</h4>
+            <p>Faster than scrolling — select and go.</p>
+          </div>
+        </div>
+        <div class="finder__body">
+          <div class="field">
+            <label for="fBrand">Bike Brand</label>
+            <select id="fBrand" data-finder="brand"></select>
+          </div>
+          <div class="field">
+            <label for="fModel">Model</label>
+            <select id="fModel" data-finder="model" disabled></select>
+          </div>
+          <button class="btn btn--primary" data-finder="go" style="height:44px">Find Parts</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="brandSections"></div>
+</main>
+
+<div data-shell="footer"></div>
+
+<script src="js/art.js?v=2"></script>
+<script src="js/data.js?v=2"></script>
+<script src="js/app.js?v=2"></script>
+<script src="js/brands.js?v=2"></script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>All Spare Parts — Thirumalai Autospare World</title>
+<meta name="description" content="Search the full two-wheeler spare parts catalogue — filter by bike brand, model, part category, manufacturer and price.">
+<meta name="theme-color" content="#08090A">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=2">
+</head>
+<body data-page="products">
+
+<div data-shell="header"></div>
+
+<main>
+  <section class="pagehead gridtex">
+    <div class="wrap">
+      <div id="crumb"></div>
+      <span class="section-head__num" id="kicker">PARTS CATALOGUE</span>
+      <h1 id="title" style="margin:6px 0 10px">All Spare Parts</h1>
+      <p class="muted" id="lede" style="max-width:64ch"></p>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="wrap">
+      <div class="layout">
+
+        <!-- ---------- filters ---------- -->
+        <aside class="sidebar" id="filters">
+          <div class="fgroup">
+            <h5>Search</h5>
+            <div class="field">
+              <input type="search" id="fq" placeholder="Part, SKU or bike…" autocomplete="off">
+            </div>
+          </div>
+
+          <div class="fgroup">
+            <h5>Your Bike</h5>
+            <div class="field" style="margin-bottom:10px">
+              <label for="fbrand">Brand</label>
+              <select id="fbrand"></select>
+            </div>
+            <div class="field">
+              <label for="fmodel">Model</label>
+              <select id="fmodel" disabled></select>
+            </div>
+          </div>
+
+          <div class="fgroup">
+            <h5>Category</h5>
+            <div id="fcats"></div>
+          </div>
+
+          <div class="fgroup">
+            <h5>Manufacturer</h5>
+            <div id="fmakers" style="max-height:236px;overflow-y:auto"></div>
+          </div>
+
+          <div class="fgroup">
+            <h5>Max Price</h5>
+            <input type="range" id="fprice" min="100" max="4000" step="50" value="4000"
+                   style="width:100%;accent-color:var(--red)">
+            <div class="mono dim" style="display:flex;justify-content:space-between;margin-top:6px">
+              <span>₹100</span><span id="priceVal">Any</span>
+            </div>
+          </div>
+
+          <div class="fgroup">
+            <label class="fopt"><input type="checkbox" id="fstock"> In stock only</label>
+            <label class="fopt"><input type="checkbox" id="fdeal"> Offers only (25%+)</label>
+            <label class="fopt"><input type="checkbox" id="fwish"> My wishlist</label>
+          </div>
+
+          <div class="fgroup">
+            <button class="btn btn--ghost btn--sm btn--block" id="clearFilters">Clear All Filters</button>
+          </div>
+        </aside>
+
+        <!-- ---------- results ---------- -->
+        <div>
+          <div class="toolbar">
+            <span class="toolbar__count"><b id="count">0</b> parts found</span>
+            <div class="chiprow" id="activeChips"></div>
+            <div class="field" style="min-width:180px">
+              <select id="sort" aria-label="Sort results">
+                <option value="pop">Sort: Popular</option>
+                <option value="lo">Price: Low to High</option>
+                <option value="hi">Price: High to Low</option>
+                <option value="off">Biggest Discount</option>
+                <option value="rate">Top Rated</option>
+                <option value="az">Name: A–Z</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="part-grid" id="grid"></div>
+          <div id="more" style="text-align:center;margin-top:32px"></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</main>
+
+<div data-shell="footer"></div>
+
+<script src="js/art.js?v=2"></script>
+<script src="js/data.js?v=2"></script>
+<script src="js/app.js?v=2"></script>
+<script src="js/products.js?v=2"></script>
+</body>
+</html>

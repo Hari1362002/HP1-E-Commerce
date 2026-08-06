@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dealer Sign In — Thirumalai Autospare World</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#08090A">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css?v=2">
+</head>
+<body>
+
+<main style="flex:1;display:grid;place-items:center;padding:40px 20px" class="gridtex">
+  <div style="width:100%;max-width:420px">
+
+    <a class="logo" href="../index.html" style="justify-content:center;margin-bottom:26px">
+      <span class="logo__mark" id="logoMark"></span>
+      <span class="logo__txt">
+        <span class="logo__name">Thirumalai</span>
+        <span class="logo__sub">Autospare World</span>
+      </span>
+    </a>
+
+    <div class="card" style="overflow:hidden">
+      <div class="hazard hazard--thin"></div>
+      <div style="padding:28px">
+        <span class="section-head__num">BACK OFFICE</span>
+        <h2 style="margin:8px 0">Dealer Sign In</h2>
+        <p class="muted" style="font-size:.86rem;margin-bottom:24px">
+          Stock, pricing and order management for counter staff.
+        </p>
+
+        <form id="loginForm" novalidate>
+          <div class="field" style="margin-bottom:14px">
+            <label for="user">Email</label>
+            <input id="user" type="email" autocomplete="username" placeholder="you@example.com">
+          </div>
+          <div class="field" style="margin-bottom:20px">
+            <label for="pass">Password</label>
+            <input id="pass" type="password" autocomplete="current-password" placeholder="••••••••">
+          </div>
+          <button class="btn btn--primary btn--block" type="submit" style="height:48px">Sign In</button>
+        </form>
+
+        <div style="margin-top:20px;padding:13px 15px;background:var(--amber-dim);
+                    border:1px solid rgba(255,176,32,.28);border-radius:var(--r-xs)">
+          <b style="display:block;font-size:.78rem;color:var(--amber);margin-bottom:6px">
+            Demo environment</b>
+          <p class="mono" style="font-size:.68rem;color:var(--txt-2);line-height:1.6">
+            dealer@thirumalaiautospare.in<br>demo1234
+          </p>
+          <p class="dim" style="font-size:.7rem;margin-top:8px">
+            Front-end prototype — nothing is sent anywhere. Do not enter a real password.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <p class="t-center" style="margin-top:20px">
+      <a class="linkbtn" href="../index.html">← Back to storefront</a>
+    </p>
+  </div>
+</main>
+
+<script src="../js/art.js?v=2"></script>
+<script src="../js/data.js?v=2"></script>
+<script src="../js/app.js?v=2"></script>
+<script src="../js/admin.js?v=2"></script>
+<script>
+(function () {
+  $('#logoMark').innerHTML = ICO.gear;
+  if (Admin.isIn()) location.replace('dashboard.html');
+
+  $('#loginForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const u = $('#user').value.trim().toLowerCase();
+    const p = $('#pass').value;
+
+    if (u === Admin.DEMO_USER && p === Admin.DEMO_PASS) {
+      Admin.signIn();
+      location.href = 'dashboard.html';
+    } else {
+      toast('Sign in failed', 'Use the demo credentials shown below', 'err');
+      $('#pass').value = '';
+      $('#pass').focus();
+    }
+  });
+})();
+</script>
+</body>
+</html>

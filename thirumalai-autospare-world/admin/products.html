@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Inventory — Thirumalai Back Office</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#08090A">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css?v=2">
+</head>
+<body>
+
+<div data-shell="admin"></div>
+
+<main>
+  <section class="pagehead gridtex">
+    <div class="wrap">
+      <div style="display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between;align-items:flex-end">
+        <div>
+          <span class="section-head__num">CATALOGUE</span>
+          <h1 style="margin:6px 0 10px">Inventory</h1>
+          <p class="muted">Adjust selling price and stock on hand. Edits apply to the
+             storefront immediately.</p>
+        </div>
+        <button class="btn btn--outline-red btn--sm" id="resetAll">Reset All Edits</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="wrap">
+      <div class="toolbar">
+        <span class="toolbar__count"><b id="count">0</b> SKUs</span>
+        <div class="field" style="min-width:230px">
+          <input type="search" id="q" placeholder="Search part, SKU or bike…">
+        </div>
+        <div class="field" style="min-width:150px">
+          <select id="brand"></select>
+        </div>
+        <div class="field" style="min-width:150px">
+          <select id="cat"></select>
+        </div>
+        <div class="field" style="min-width:150px">
+          <select id="stock">
+            <option value="">All stock</option>
+            <option value="low">Low (1–5)</option>
+            <option value="out">Out of stock</option>
+            <option value="edited">Edited only</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="card" style="overflow-x:auto">
+        <table class="spectable" id="table" style="min-width:900px;border:none"></table>
+      </div>
+      <div id="more" style="text-align:center;margin-top:26px"></div>
+    </div>
+  </section>
+</main>
+
+<script src="../js/art.js?v=2"></script>
+<script src="../js/data.js?v=2"></script>
+<script src="../js/app.js?v=2"></script>
+<script src="../js/admin.js?v=2"></script>
+<script src="../js/admin-products.js?v=2"></script>
+</body>
+</html>
