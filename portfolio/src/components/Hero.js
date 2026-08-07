@@ -83,7 +83,9 @@ export default function Hero({ mode }) {
           </div>
         </div>
 
-        <p className="label mt-4 text-muted lg:mt-8">
+        {/* Clear of the portrait — on a phone the circle sits directly above
+            this line, and at mt-4 the two crowded each other. */}
+        <p className="label mt-10 text-muted lg:mt-12">
           {isDev ? profile.title : profile.videoTitle}
         </p>
 
