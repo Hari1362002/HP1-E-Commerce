@@ -83,7 +83,9 @@ export default function Hero({ mode }) {
           </div>
         </div>
 
-        <p className="label mt-4 text-muted lg:mt-8">{profile.title}</p>
+        <p className="label mt-4 text-muted lg:mt-8">
+          {isDev ? profile.title : profile.videoTitle}
+        </p>
 
         {/* Footer margin — the pull quote, the counts, and the two doors */}
         <div className="mt-10 grid gap-8 border-t border-rule pt-8 sm:mt-14 lg:grid-cols-12 lg:items-end">

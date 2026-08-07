@@ -6,7 +6,9 @@
 export const profile = {
   name: "Hariprasath E",
   first: "Hariprasath",
+  // One per tab — the caption under the portrait names the craft you came for.
   title: "Full Stack Developer",
+  videoTitle: "Video Editor & Designer",
   roles: ["Full Stack Developer", "Video Editor"],
   location: "Coimbatore, India",
   email: "hp8706325@gmail.com",
