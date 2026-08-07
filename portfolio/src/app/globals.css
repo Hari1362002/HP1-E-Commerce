@@ -134,17 +134,31 @@ body {
    monochrome makes it read as art direction rather than a selfie. Hover
    returns the original, so the real photo is never hidden.
    ------------------------------------------------------------------ */
+/* The source is a selfie, so his arm runs out of frame and the cut-out ends
+   in a hard amputated edge at the bottom right. Two gradients, intersected,
+   dissolve the bottom and that right edge — he emerges from the disc instead
+   of being sliced off by it. Masking happens before `filter`, so the drop
+   shadow follows the faded silhouette rather than the raw rectangle. */
+.portrait-mask {
+  -webkit-mask-image: linear-gradient(to bottom, #000 74%, transparent 99%),
+    linear-gradient(to right, #000 82%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(to bottom, #000 74%, transparent 99%),
+    linear-gradient(to right, #000 82%, transparent 100%);
+  mask-composite: intersect;
+}
+
 .portrait {
   /* Full colour, plus a shadow so he sits in front of the backdrop rather
      than being pasted onto it. */
   filter: contrast(1.04) saturate(1.06) brightness(1.02)
-    drop-shadow(0 18px 30px rgb(0 0 0 / 0.28));
+    drop-shadow(0 18px 30px rgb(0 0 0 / 0.22));
   transition: filter 0.6s ease;
 }
 
 .mode-video .portrait {
   filter: contrast(1.06) saturate(1.04) brightness(1.03)
-    drop-shadow(0 18px 34px rgb(0 0 0 / 0.55));
+    drop-shadow(0 18px 34px rgb(0 0 0 / 0.45));
 }
 
 /* --- The backdrop behind the cut-out --------------------------------

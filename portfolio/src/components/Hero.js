@@ -43,15 +43,19 @@ export default function Hero({ mode }) {
               <span className="backdrop-grid" />
               <span className="backdrop-ring" />
             </div>
-            <Image
-              src={profile.photo}
-              alt={`${profile.name}, ${profile.title} and video editor`}
-              width={797}
-              height={868}
-              priority
-              sizes="(max-width: 1024px) 62vw, 30vw"
-              className="portrait relative h-auto w-full"
-            />
+            {/* Mask on the image, filters on the wrapper — so the drop shadow
+                is cast by the faded silhouette, not the raw rectangle. */}
+            <div className="portrait relative">
+              <Image
+                src={profile.photo}
+                alt={`${profile.name}, ${profile.title} and video editor`}
+                width={797}
+                height={868}
+                priority
+                sizes="(max-width: 1024px) 62vw, 30vw"
+                className="portrait-mask h-auto w-full"
+              />
+            </div>
           </div>
         </div>
 
