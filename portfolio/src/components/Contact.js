@@ -35,103 +35,129 @@ function DownloadIcon({ className = "" }) {
 }
 
 const SOCIALS = [
-  ["GitHub", links.github],
-  ["LinkedIn", links.linkedin],
-  ["Instagram", links.instagram],
-  ["Showreel", links.drive],
+  ["GitHub", "The code", links.github],
+  ["LinkedIn", "The CV version", links.linkedin],
+  ["Instagram", "@hari.edz — the edits", links.instagram],
+  ["Showreel", "Every video, on Drive", links.drive],
 ];
 
-export default function Contact() {
+export default function Contact({ mode }) {
+  const isVideo = mode === "video";
+
   return (
-    <footer
-      id="contact"
-      className="mx-auto max-w-[1400px] border-t border-rule px-5 py-16 sm:px-8 sm:py-24"
-    >
-      <p className="label text-accent">Contact</p>
+    <footer id="contact" className="border-t border-rule">
+      <div className="mx-auto max-w-[1400px] px-5 pt-16 pb-10 sm:px-8 sm:pt-24">
+        {/* The ask, and the two ways to answer it */}
+        <div className="grid gap-10 lg:grid-cols-12 lg:gap-12">
+          <div className="lg:col-span-7">
+            <p className="label text-accent">Get in touch</p>
+            <h2 className="display mt-5 text-[clamp(2.5rem,9vw,7rem)]">
+              Got a project?
+              <br />
+              <span className="script lowercase">let&apos;s</span> talk.
+            </h2>
+            <p className="mt-6 max-w-md text-lg leading-relaxed text-muted">
+              {isVideo
+                ? "Send me the footage and what you want it to feel like. I'll come back with a cut."
+                : "Tell me what you're building and who it's for. I'll come back with how I'd approach it."}
+            </p>
+          </div>
 
-      {/* The big ask */}
-      <h2 className="display mt-5 text-[clamp(2.5rem,10vw,8rem)]">
-        Let&apos;s make
-        <br />
-        <span className="script lowercase">something</span> good.
-      </h2>
+          {/* Primary actions — big enough to be the obvious next step */}
+          <div className="flex flex-col gap-3 lg:col-span-5 lg:justify-end">
+            <a
+              href={`mailto:${profile.email}`}
+              className="group flex items-center justify-between gap-4 rounded-2xl bg-ink px-6 py-6 text-paper transition-opacity hover:opacity-85"
+            >
+              <span className="min-w-0">
+                <span className="label block opacity-70">Email me</span>
+                <span className="mt-1.5 block truncate text-lg font-medium sm:text-xl">
+                  {profile.email}
+                </span>
+              </span>
+              <ArrowIcon className="h-6 w-6 shrink-0 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
+            </a>
 
-      <a
-        href={`mailto:${profile.email}`}
-        className="group mt-10 inline-flex max-w-full items-center gap-3 border-b-2 border-ink pb-2 transition-colors hover:border-accent hover:text-accent"
-      >
-        <span className="truncate text-[clamp(1.1rem,4vw,2.25rem)] font-medium">
-          {profile.email}
-        </span>
-        <ArrowIcon className="h-5 w-5 shrink-0 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1 sm:h-7 sm:w-7" />
-      </a>
-
-      <div className="mt-14 grid gap-12 border-t border-rule pt-12 lg:grid-cols-3">
-        {/* Direct */}
-        <div>
-          <p className="label text-muted">Direct</p>
-          <ul className="mt-5 space-y-3">
-            <li>
-              <a
-                href={profile.phoneHref}
-                className="text-lg transition-colors hover:text-accent"
-              >
-                {profile.phone}
-              </a>
-            </li>
-            <li className="text-lg text-muted">{profile.location}</li>
-          </ul>
+            <a
+              href={profile.phoneHref}
+              className="group flex items-center justify-between gap-4 rounded-2xl border border-rule px-6 py-6 transition-colors hover:border-ink"
+            >
+              <span className="min-w-0">
+                <span className="label block text-muted">Or call</span>
+                <span className="mt-1.5 block truncate text-lg font-medium sm:text-xl">
+                  {profile.phone}
+                </span>
+              </span>
+              <ArrowIcon className="h-6 w-6 shrink-0 text-muted transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-ink" />
+            </a>
+          </div>
         </div>
 
-        {/* Elsewhere */}
-        <div>
-          <p className="label text-muted">Elsewhere</p>
-          <ul className="mt-5 space-y-3">
-            {SOCIALS.map(([label, href]) => (
-              <li key={label}>
-                <a
-                  href={href}
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  className="group inline-flex items-center gap-2 text-lg transition-colors hover:text-accent"
-                >
-                  {label}
-                  <ArrowIcon className="h-4 w-4 opacity-0 transition-all duration-300 group-hover:translate-x-0.5 group-hover:opacity-100" />
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
+        {/* Everything else, on one rule */}
+        <div className="mt-16 grid gap-10 border-t border-rule pt-12 sm:grid-cols-2 lg:grid-cols-12 lg:gap-12">
+          <div className="lg:col-span-5">
+            <p className="label text-muted">Find me on</p>
+            <ul className="mt-5 space-y-1">
+              {SOCIALS.map(([label, note, href]) => (
+                <li key={label}>
+                  <a
+                    href={href}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    className="group flex items-baseline gap-3 py-2 transition-colors hover:text-accent"
+                  >
+                    <span className="text-lg font-medium">{label}</span>
+                    <span className="text-sm text-muted">{note}</span>
+                    <ArrowIcon className="h-3.5 w-3.5 shrink-0 -translate-x-1 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100" />
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-        {/* Résumés — one per craft */}
-        <div>
-          <p className="label text-muted">Résumé</p>
-          <ul className="mt-5 space-y-3">
-            {resumes.map((resume) => (
-              <li key={resume.file}>
-                <a
-                  href={resume.file}
-                  download
-                  className="group flex items-center justify-between gap-4 rounded-lg border border-rule px-4 py-3.5 transition-colors hover:border-ink"
-                >
-                  <span>
-                    <span className="block text-base">{resume.label}</span>
-                    <span className="label mt-1 block text-muted">
-                      {resume.meta}
+          <div className="lg:col-span-4">
+            <p className="label text-muted">Download my CV</p>
+            <ul className="mt-5 space-y-2.5">
+              {resumes.map((resume) => (
+                <li key={resume.file}>
+                  <a
+                    href={resume.file}
+                    download
+                    className="group flex items-center justify-between gap-4 rounded-xl border border-rule px-4 py-3.5 transition-colors hover:border-ink"
+                  >
+                    <span>
+                      <span className="block text-base">{resume.label}</span>
+                      <span className="label mt-1 block text-muted">
+                        {resume.meta}
+                      </span>
                     </span>
-                  </span>
-                  <DownloadIcon className="h-5 w-5 shrink-0 text-muted transition-all duration-300 group-hover:translate-y-0.5 group-hover:text-accent" />
-                </a>
-              </li>
-            ))}
-          </ul>
+                    <DownloadIcon className="h-5 w-5 shrink-0 text-muted transition-all duration-300 group-hover:translate-y-0.5 group-hover:text-accent" />
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="lg:col-span-3">
+            <p className="label text-muted">Based in</p>
+            <p className="mt-5 text-lg">{profile.location}</p>
+            <p className="mt-2 text-sm leading-relaxed text-muted">
+              Open to freelance and full-time work, remote or on site.
+            </p>
+          </div>
         </div>
       </div>
 
-      <div className="mt-14 border-t border-rule pt-8">
-        <p className="label text-muted">
-          © {new Date().getFullYear()} {profile.name}
-        </p>
+      {/* Signature line — the wordmark, big and quiet, closing the page */}
+      <div className="mx-auto max-w-[1400px] px-5 sm:px-8">
+        <div className="flex flex-wrap items-end justify-between gap-4 border-t border-rule py-8">
+          <p className="display text-[clamp(2rem,9vw,6rem)] leading-none text-ink/10">
+            Hariprasath
+          </p>
+          <p className="label pb-1 text-muted">
+            © {new Date().getFullYear()} — {profile.title}
+          </p>
+        </div>
       </div>
     </footer>
   );

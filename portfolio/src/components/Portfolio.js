@@ -20,7 +20,7 @@ export default function Portfolio({ mode }) {
         <Hero mode={mode} />
         {mode === "video" ? <VideoWork /> : <DevWork />}
         <About mode={mode} />
-        <Contact />
+        <Contact mode={mode} />
       </main>
     </div>
   );

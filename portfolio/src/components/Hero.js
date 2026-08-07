@@ -65,12 +65,13 @@ export default function Hero({ mode }) {
         <div className="mt-10 grid gap-8 border-t border-rule pt-8 sm:mt-14 lg:grid-cols-12 lg:items-end">
           <div className="lg:col-span-5">
             <p className="display text-[clamp(1.5rem,3.5vw,2.5rem)]">
-              Fewer clicks.
+              I build websites
               <br />
-              <span className="script lowercase">more</span> shipped.
+              <span className="script lowercase">and</span> edit videos.
             </p>
             <p className="mt-4 max-w-sm text-[15px] leading-relaxed text-muted">
-              I build the whole stack, then cut the film that sells it.
+              Front end to database, then the reel that sells it. Based in
+              Coimbatore, working with clients across Tamil Nadu.
             </p>
           </div>
 

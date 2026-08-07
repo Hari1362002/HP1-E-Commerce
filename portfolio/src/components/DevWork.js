@@ -5,16 +5,16 @@ const GROUPS = [
   {
     kind: "freelance",
     label: "Client work",
-    heading: "Paid to solve\nsomeone else's problem.",
+    heading: "Built for\nreal businesses.",
     blurb:
-      "Freelance builds for real businesses — a brief, a deadline, and someone whose customers depend on it working.",
+      "Freelance projects with a client, a brief and a deadline — websites people use every day to run their shop.",
   },
   {
     kind: "personal",
-    label: "Personal builds",
-    heading: "Built because\nit bothered me.",
+    label: "My own projects",
+    heading: "Built on\nmy own time.",
     blurb:
-      "Self-directed projects. Each one started with something that was harder than it needed to be.",
+      "No client, no brief. I built each one because I wanted to see if I could — and because the existing way was harder than it needed to be.",
   },
 ];
 
@@ -35,16 +35,16 @@ export default function DevWork() {
   return (
     <section id="work" className="mx-auto max-w-[1400px] px-5 pb-10 sm:px-8">
       <div className="max-w-3xl py-10 sm:py-16">
-        <p className="label text-accent">Selected work</p>
+        <p className="label text-accent">My work</p>
         <h2 className="display mt-5 text-[clamp(2.25rem,7vw,5rem)]">
-          Built, shipped,
+          {projects.length} websites
           <br />
-          <span className="script lowercase">and</span> explained.
+          <span className="script lowercase">I</span> built.
         </h2>
         <p className="mt-6 text-lg leading-relaxed text-muted sm:text-xl">
-          {projects.length} projects, each with the screenshot, the link, and the
-          three decisions that shaped it — what I looked at, what I tested, what I
-          built.
+          Every one is live — open it and try it. For each, I&apos;ve written down
+          three things: the problem I found, what I tried, and what I ended up
+          building.
         </p>
       </div>
 

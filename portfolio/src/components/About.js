@@ -14,11 +14,11 @@ export default function About({ mode }) {
     >
       <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
         <div className="lg:col-span-5">
-          <p className="label text-accent">About</p>
+          <p className="label text-accent">About me</p>
           <h2 className="display mt-5 text-[clamp(2.25rem,6vw,4.5rem)]">
-            Two crafts,
+            Who
             <br />
-            <span className="script lowercase">one</span> eye.
+            <span className="script lowercase">I</span> am.
           </h2>
         </div>
 
