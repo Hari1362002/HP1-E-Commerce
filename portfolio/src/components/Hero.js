@@ -10,63 +10,47 @@ export default function Hero({ mode }) {
 
   return (
     <section id="top" className="mx-auto max-w-[1400px] px-5 pt-6 sm:px-8 sm:pt-10">
-      {/* The hero is set as a printed page: ruled edges, meta in the margins,
-          type and portrait sharing the plate rather than sitting in a row. */}
+      {/* The hero is set as a printed plate: ruled edge, crop marks, and the
+          portrait standing in front of the type rather than beside it. */}
       <div className="poster px-5 py-8 sm:px-8 sm:py-12">
-        {/* Masthead margin — the three things worth knowing before the name */}
-        <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-3 border-b border-rule pb-6">
-          {profile.available ? (
-            <p className="label flex items-center gap-2">
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-70" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
-              </span>
-              Available for work
-            </p>
-          ) : (
-            <span className="label text-muted">Portfolio</span>
-          )}
-          <p className="label hidden text-muted sm:block">Portfolio · 2026</p>
-          <p className="label text-muted">{profile.location}</p>
-        </div>
-
         {/* Intro line */}
-        <p className="rise mt-8 max-w-xl text-[15px] leading-relaxed text-muted sm:mt-12 sm:text-lg">
+        <p className="rise max-w-xl text-[15px] leading-relaxed text-muted sm:text-lg">
           <span aria-hidden="true">👋</span> my name is{" "}
           <span className="text-ink">Hariprasath</span> and I am a{" "}
-          <span className="script text-ink">frontend developer</span> and{" "}
+          <span className="script text-ink">full stack developer</span> and{" "}
           <span className="script text-ink">video editor</span>
         </p>
 
-        {/* The statement. The portrait column pulls left on desktop so the
-            plate reads as one composition instead of two boxes side by side. */}
-        <div className="mt-6 grid items-end gap-8 sm:mt-8 lg:grid-cols-[minmax(0,1fr)_clamp(210px,21vw,290px)] lg:gap-0">
-          <h1 className="display relative z-10 text-[clamp(3rem,11.5vw,9.5rem)]">
-            <span className="block">Developer</span>
-            <span className="block">
+        {/* Type and portrait share one stacking context. The cut-out sits on
+            its own layer above the first line and below the outlined one, so
+            the words genuinely run behind him. */}
+        <div className="relative mt-8 sm:mt-12">
+          <h1 className="display relative text-[clamp(3rem,12.5vw,10.5rem)]">
+            <span className="relative z-0 block">Developer</span>
+            <span className="relative z-20 block">
               <span className="script lowercase">&amp;</span>{" "}
               <span className="outline">Video&nbsp;Editor</span>
             </span>
           </h1>
 
-          <figure className="relative z-0 mx-auto w-[58%] max-w-[240px] lg:mx-0 lg:-ml-10 lg:w-full lg:max-w-none">
-            <div className="relative aspect-[4/5] overflow-hidden border border-rule">
-              <Image
-                src={profile.photo}
-                alt={`${profile.name}, frontend developer and video editor`}
-                fill
-                priority
-                sizes="(max-width: 1024px) 62vw, 22vw"
-                className="portrait object-cover object-[38%_28%]"
-              />
-            </div>
-            <figcaption className="label mt-3 text-muted">
-              Hariprasath E — {profile.location}
-            </figcaption>
-          </figure>
+          {/* Portrait — absolute on desktop so it overlaps the type; on small
+              screens it drops below, where there is no room to overlap. */}
+          <div className="pointer-events-none relative z-10 mx-auto mt-6 w-[62%] max-w-[260px] lg:absolute lg:right-0 lg:top-1/2 lg:mt-0 lg:w-[30%] lg:max-w-[380px] lg:-translate-y-[52%]">
+            <Image
+              src={profile.photo}
+              alt={`${profile.name}, ${profile.title} and video editor`}
+              width={797}
+              height={868}
+              priority
+              sizes="(max-width: 1024px) 62vw, 30vw"
+              className="portrait h-auto w-full"
+            />
+          </div>
         </div>
 
-        {/* Footer margin — the pull quote, the count, and the two doors */}
+        <p className="label mt-4 text-muted lg:mt-8">{profile.title}</p>
+
+        {/* Footer margin — the pull quote, the counts, and the two doors */}
         <div className="mt-10 grid gap-8 border-t border-rule pt-8 sm:mt-14 lg:grid-cols-12 lg:items-end">
           <div className="lg:col-span-5">
             <p className="display text-[clamp(1.5rem,3.5vw,2.5rem)]">
@@ -75,8 +59,7 @@ export default function Hero({ mode }) {
               <span className="script lowercase">more</span> shipped.
             </p>
             <p className="mt-4 max-w-sm text-[15px] leading-relaxed text-muted">
-              based in {profile.location}. I build the front end, then cut the
-              film that sells it.
+              I build the whole stack, then cut the film that sells it.
             </p>
           </div>
 
@@ -132,24 +115,18 @@ export default function Hero({ mode }) {
                   "React",
                   "Next.js",
                   "JavaScript",
-                  "Tailwind CSS",
-                  "MongoDB",
                   "Node.js",
+                  "MongoDB",
+                  "Tailwind CSS",
                   "MySQL",
+                  "Express",
                   "Figma",
                   "Responsive",
-                  "Performance",
                 ]
               : videoWork.tools.concat(["Reels", "Colour grade", "Motion titles"])
           }
         />
       </div>
-
-      <p className="label py-6 text-muted">
-        {isDev
-          ? `${projects.length} shipped projects — screenshot, live link, and how each one was figured out`
-          : "Reels, edits and design work — shot to grade to caption"}
-      </p>
     </section>
   );
 }

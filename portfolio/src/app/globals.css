@@ -185,6 +185,10 @@ body {
   }
 }
 
+.marquee {
+  overflow: hidden;
+}
+
 .marquee-track {
   display: flex;
   width: max-content;
@@ -194,6 +198,25 @@ body {
 .marquee:hover .marquee-track {
   animation-play-state: paused;
 }
+
+/* Phones ship with Reduce Motion on far more often than desktops do, and the
+   blanket rule below would otherwise leave the ticker frozen mid-word with no
+   way to read the rest. Hand it back as a strip you can swipe instead. */
+@media (prefers-reduced-motion: reduce) {
+  .marquee {
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .marquee::-webkit-scrollbar {
+    display: none;
+  }
+
+  .marquee-track {
+    animation: none !important;
+  }
+}
+
 
 /* --- Entrance ----------------------------------------------------- */
 @keyframes rise {

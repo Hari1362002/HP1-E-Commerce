@@ -86,12 +86,6 @@ export default function Nav({ mode }) {
           >
             {profile.email}
           </a>
-          <a
-            href="#contact"
-            className="label shrink-0 rounded-full border border-ink px-4 py-2.5 transition-colors hover:bg-ink hover:text-paper md:hidden"
-          >
-            Hire me
-          </a>
         </div>
 
         {/* Mobile: the switch gets the room it needs */}

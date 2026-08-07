@@ -29,15 +29,16 @@ const jetbrains = JetBrains_Mono({
 });
 
 export const metadata = {
-  metadataBase: new URL("https://hariprasath.dev"),
+  // The live origin — link previews resolve relative URLs against this.
+  metadataBase: new URL("https://hariprasath-beige.vercel.app"),
   title: {
-    default: "Hariprasath E — Frontend Developer & Video Editor",
+    default: "Hariprasath E — Full Stack Developer & Video Editor",
     template: "%s — Hariprasath E",
   },
   description:
     "Frontend developer and video editor based in Coimbatore. Storefronts, dashboards and browser tools — plus the reels that sell them.",
   openGraph: {
-    title: "Hariprasath E — Frontend Developer & Video Editor",
+    title: "Hariprasath E — Full Stack Developer & Video Editor",
     description:
       "Storefronts, dashboards and browser tools — plus the reels that sell them.",
     type: "website",

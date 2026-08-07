@@ -128,11 +128,10 @@ export default function Contact() {
         </div>
       </div>
 
-      <div className="mt-14 flex flex-wrap items-center justify-between gap-4 border-t border-rule pt-8">
+      <div className="mt-14 border-t border-rule pt-8">
         <p className="label text-muted">
           © {new Date().getFullYear()} {profile.name}
         </p>
-        <p className="label text-muted">Built with Next.js &amp; Tailwind</p>
       </div>
     </footer>
   );

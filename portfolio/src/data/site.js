@@ -6,15 +6,16 @@
 export const profile = {
   name: "Hariprasath E",
   first: "Hariprasath",
-  roles: ["Frontend Developer", "Video Editor"],
+  title: "Full Stack Developer",
+  roles: ["Full Stack Developer", "Video Editor"],
   location: "Coimbatore, India",
   email: "hp8706325@gmail.com",
   phone: "+91 96009 31833",
   phoneHref: "tel:+919600931833",
-  photo: "/hari.jpg",
-  available: true,
+  // Background lifted out, so the display type can sit behind him.
+  photo: "/hari-cutout.png",
   bio: [
-    "MCA graduate who builds the front end and cuts the video. Freelance work for businesses in Palani and Coimbatore, plus my own storefronts, dashboards and browser tools — and the reels that sell them.",
+    "MCA graduate who builds the whole stack and cuts the video. Freelance work for businesses in Palani and Coimbatore, plus my own storefronts, dashboards and browser tools — and the reels that sell them.",
     "Every project below started the same way: watch how people actually use the thing, find where they get stuck, then build only what removes the friction.",
   ],
 };
@@ -123,8 +124,9 @@ export const projects = [
   },
   {
     slug: "autospare",
-    kind: "personal",
+    kind: "freelance",
     index: "03",
+    client: "Thirumalai Autospare World",
     title: "Thirumalai Autospare World",
     kicker: "Two-wheeler parts storefront",
     year: "2026",
@@ -296,24 +298,53 @@ export const videoWork = {
   ],
 };
 
-export const skills = [
-  {
-    group: "Frontend",
-    items: ["HTML5", "CSS3", "JavaScript", "React.js", "Next.js", "Tailwind CSS"],
-  },
-  {
-    group: "Backend & data",
-    items: ["Node.js", "Express", "MongoDB", "MySQL", "SQL", "REST APIs"],
-  },
-  {
-    group: "Design & video",
-    items: ["Figma", "DaVinci Resolve", "Premiere Pro", "After Effects", "Canva"],
-  },
-  {
-    group: "Analysis",
-    items: ["Power BI", "Excel", "Google Sheets"],
-  },
-];
+/**
+ * Skills are per-tab. Someone hiring an editor does not need to read about
+ * MongoDB, and the coding list only dilutes the video case.
+ */
+export const skills = {
+  dev: [
+    {
+      group: "Frontend",
+      items: ["HTML5", "CSS3", "JavaScript", "React.js", "Next.js", "Tailwind CSS"],
+    },
+    {
+      group: "Backend & data",
+      items: ["Node.js", "Express", "MongoDB", "MySQL", "SQL", "REST APIs"],
+    },
+    {
+      group: "Tooling",
+      items: ["Git & GitHub", "Vite", "Vercel", "Figma", "Power BI"],
+    },
+    {
+      group: "Craft",
+      items: [
+        "Responsive layout",
+        "Performance",
+        "Accessibility",
+        "Component design",
+      ],
+    },
+  ],
+  video: [
+    {
+      group: "Editing",
+      items: ["DaVinci Resolve", "Premiere Pro", "After Effects"],
+    },
+    {
+      group: "Design",
+      items: ["Figma", "Photoshop", "Canva"],
+    },
+    {
+      group: "Craft",
+      items: ["Colour grading", "Motion titles", "Short-form pacing", "Sound sync"],
+    },
+    {
+      group: "Delivery",
+      items: ["Reels & Shorts", "YouTube edits", "Promo cuts", "Social sets"],
+    },
+  ],
+};
 
 export const timeline = [
   {
