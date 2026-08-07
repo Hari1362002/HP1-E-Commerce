@@ -34,25 +34,44 @@ export default function Hero({ mode }) {
           </h1>
 
           {/* Portrait — absolute on desktop so it overlaps the type; on small
-              screens it drops below, where there is no room to overlap. */}
-          <div className="pointer-events-none relative z-10 mx-auto mt-6 w-[62%] max-w-[260px] lg:absolute lg:right-0 lg:top-1/2 lg:mt-0 lg:w-[30%] lg:max-w-[380px] lg:-translate-y-[52%]">
-            {/* A lit orb to stand in front of, rather than bare paper */}
-            <div className="backdrop" aria-hidden="true">
-              <span className="backdrop-glow" />
-              <span className="backdrop-orb" />
-              <span className="backdrop-grid" />
-              <span className="backdrop-ring" />
-            </div>
+              screens it drops below, where there is no room to overlap.
+
+              The disc is a square box and everything else is placed against
+              it, so the fit is arithmetic rather than eyeballed. Measured off
+              the cut-out's alpha channel: his head centres at 25% of the image
+              width and the whole figure at 39%, so the anchor is 32%. At
+              w-[96%], putting the image's 32% point on the disc's centre means
+              left = 50 − 32×0.96 ≈ 19%. The image is 797×868, so 96% of the
+              disc's width is 105% of its height — top at -10% lifts his hair
+              just past the top edge and lands the fade near the bottom. */}
+          <div className="pointer-events-none relative z-10 mx-auto mt-6 aspect-square w-[64%] max-w-[270px] lg:absolute lg:right-0 lg:top-1/2 lg:mt-0 lg:w-[30%] lg:max-w-[370px] lg:-translate-y-[50%]">
+            <span
+              aria-hidden="true"
+              className="backdrop-glow absolute -inset-[14%] rounded-full"
+            />
+            <span
+              aria-hidden="true"
+              className="backdrop-orb absolute inset-0 rounded-full"
+            />
+            <span
+              aria-hidden="true"
+              className="backdrop-grid absolute inset-0 rounded-full"
+            />
+            <span
+              aria-hidden="true"
+              className="backdrop-ring absolute -inset-[9%] rounded-full"
+            />
+
             {/* Mask on the image, filters on the wrapper — so the drop shadow
                 is cast by the faded silhouette, not the raw rectangle. */}
-            <div className="portrait relative">
+            <div className="portrait absolute -top-[10%] left-[19%] w-[96%]">
               <Image
                 src={profile.photo}
                 alt={`${profile.name}, ${profile.title} and video editor`}
                 width={797}
                 height={868}
                 priority
-                sizes="(max-width: 1024px) 62vw, 30vw"
+                sizes="(max-width: 1024px) 80vw, 38vw"
                 className="portrait-mask h-auto w-full"
               />
             </div>

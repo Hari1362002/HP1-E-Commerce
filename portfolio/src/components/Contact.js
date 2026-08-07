@@ -148,15 +148,14 @@ export default function Contact({ mode }) {
         </div>
       </div>
 
-      {/* Signature line — the wordmark, big and quiet, closing the page */}
       <div className="mx-auto max-w-[1400px] px-5 sm:px-8">
-        <div className="flex flex-wrap items-end justify-between gap-4 border-t border-rule py-8">
-          <p className="display text-[clamp(2rem,9vw,6rem)] leading-none text-ink/10">
-            Hariprasath
-          </p>
-          <p className="label pb-1 text-muted">
+        <div className="flex flex-wrap items-center justify-between gap-3 border-t border-rule py-8">
+          <p className="label text-muted">
             © {new Date().getFullYear()} — {profile.title}
           </p>
+          <a href="#top" className="label text-muted transition-colors hover:text-ink">
+            Back to top ↑
+          </a>
         </div>
       </div>
     </footer>
