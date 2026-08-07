@@ -25,7 +25,10 @@ export default function Hero({ mode }) {
             its own layer above the first line and below the outlined one, so
             the words genuinely run behind him. */}
         <div className="relative mt-8 sm:mt-12">
-          <h1 className="display relative text-[clamp(3rem,12.5vw,10.5rem)]">
+          {/* Sized to clear the portrait column rather than to fill the
+              viewport — at 12.5vw the last letter of "Editor" ran under the
+              circle and was lost behind it. */}
+          <h1 className="display relative text-[clamp(2.75rem,10.2vw,8.25rem)] lg:pr-[30%]">
             <span className="relative z-0 block">Developer</span>
             <span className="relative z-20 block">
               <span className="script lowercase">&amp;</span>{" "}
