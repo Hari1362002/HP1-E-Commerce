@@ -129,7 +129,7 @@ export const projects = [
     kicker: "Two-wheeler parts storefront",
     year: "2026",
     shot: "/shots/autospare.png",
-    live: "",
+    live: "https://thirumalai-autospare.vercel.app",
     code: "https://github.com/Hari1362002/HP1-E-Commerce/tree/main/thirumalai-autospare-world",
     stack: ["HTML", "CSS", "JavaScript", "No build step"],
     summary:
@@ -162,7 +162,7 @@ export const projects = [
     kicker: "Furniture e-commerce",
     year: "2026",
     shot: "/shots/ecommerce.png",
-    live: "",
+    live: "https://hp-1-e-commerce.vercel.app",
     code: "https://github.com/Hari1362002/HP1-E-Commerce/tree/main/ecommerce-website",
     stack: ["Next.js 16", "React", "Tailwind v4", "MongoDB", "JWT"],
     summary:
@@ -195,7 +195,7 @@ export const projects = [
     kicker: "Expenses · Tasks · Fitness",
     year: "2026",
     shot: "/shots/dashboard.png",
-    live: "",
+    live: "https://daily-hp.vercel.app",
     code: "https://github.com/Hari1362002/daily-hp",
     stack: ["Next.js", "React", "Tailwind", "MongoDB"],
     summary:
@@ -228,7 +228,7 @@ export const projects = [
     kicker: "Resize · Scan · PDF",
     year: "2026",
     shot: "/shots/resizer.png",
-    live: "",
+    live: "https://hari1362002.github.io/image-resizer/",
     code: "https://github.com/Hari1362002/image-resizer",
     stack: ["Vanilla JS", "Canvas API", "PWA", "Offline"],
     summary:
