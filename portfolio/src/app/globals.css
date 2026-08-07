@@ -135,62 +135,109 @@ body {
    returns the original, so the real photo is never hidden.
    ------------------------------------------------------------------ */
 .portrait {
-  /* Full colour — just enough lift to hold up against the display type. */
-  filter: contrast(1.04) saturate(1.06) brightness(1.02);
+  /* Full colour, plus a shadow so he sits in front of the backdrop rather
+     than being pasted onto it. */
+  filter: contrast(1.04) saturate(1.06) brightness(1.02)
+    drop-shadow(0 18px 30px rgb(0 0 0 / 0.28));
   transition: filter 0.6s ease;
 }
 
+.mode-video .portrait {
+  filter: contrast(1.06) saturate(1.04) brightness(1.03)
+    drop-shadow(0 18px 34px rgb(0 0 0 / 0.55));
+}
+
 /* --- The backdrop behind the cut-out --------------------------------
-   One arch, one ring, one dot grid. Three quiet shapes rather than a
-   pattern that competes with a 10rem headline — the eye should land on
-   him, then the type, and never on the decoration.
+   A lit orb he stands in front of, his head breaking the top edge.
+   The earlier version was a 14%-opacity arch that read as a smudge in
+   light mode and went muddy against black — this one commits: a real
+   gradient with a glow under it, so the figure has something to sit on.
    ------------------------------------------------------------------ */
 .backdrop {
   position: absolute;
-  inset: 0;
+  inset: -12% -6% 0 -6%;
   z-index: -1;
   pointer-events: none;
 }
 
-/* Arch — a filled half-round that grounds the figure. */
-.backdrop-arch {
+/* Glow — the soft light source, blurred well past the orb's edge. */
+.backdrop-glow {
   position: absolute;
   left: 50%;
-  bottom: 0;
-  width: 78%;
-  aspect-ratio: 1 / 1.32;
+  top: 26%;
+  width: 108%;
+  aspect-ratio: 1;
   transform: translateX(-50%);
-  border-radius: 999px 999px 0 0;
-  background: color-mix(in srgb, var(--accent) 14%, transparent);
+  border-radius: 999px;
+  background: radial-gradient(
+    circle at 50% 45%,
+    color-mix(in srgb, var(--accent) 55%, transparent) 0%,
+    color-mix(in srgb, var(--accent) 18%, transparent) 42%,
+    transparent 68%
+  );
+  filter: blur(26px);
+  opacity: 0.75;
 }
 
-.mode-video .backdrop-arch {
-  background: color-mix(in srgb, var(--accent) 12%, transparent);
+.mode-video .backdrop-glow {
+  opacity: 0.5;
 }
 
-/* Ring — offset, so the composition doesn't read as perfectly centred. */
+/* Orb — the disc itself, brighter at the top where the light falls. */
+.backdrop-orb {
+  position: absolute;
+  left: 50%;
+  top: 22%;
+  width: 88%;
+  aspect-ratio: 1;
+  transform: translateX(-50%);
+  border-radius: 999px;
+  background: linear-gradient(
+    165deg,
+    color-mix(in srgb, var(--accent) 78%, white 22%) 0%,
+    color-mix(in srgb, var(--accent) 92%, black 8%) 58%,
+    color-mix(in srgb, var(--accent) 62%, black 38%) 100%
+  );
+}
+
+.mode-video .backdrop-orb {
+  background: linear-gradient(
+    165deg,
+    color-mix(in srgb, var(--accent) 88%, white 12%) 0%,
+    color-mix(in srgb, var(--accent) 70%, black 30%) 62%,
+    color-mix(in srgb, var(--accent) 34%, black 66%) 100%
+  );
+}
+
+/* Ring — one crisp orbit, concentric with the orb, tilted off-axis. */
 .backdrop-ring {
   position: absolute;
   left: 50%;
-  top: 8%;
-  width: 92%;
+  top: 14%;
+  width: 104%;
   aspect-ratio: 1;
-  transform: translateX(-46%);
-  border: 1px solid color-mix(in srgb, var(--ink) 22%, transparent);
+  transform: translateX(-50%) rotate(-8deg);
+  border: 1px solid color-mix(in srgb, var(--ink) 28%, transparent);
   border-radius: 999px;
 }
 
-/* Dot grid — texture at the base, faded out before it reaches his face. */
-.backdrop-dots {
+.mode-video .backdrop-ring {
+  border-color: color-mix(in srgb, var(--ink) 22%, transparent);
+}
+
+/* Grid — fine texture over the lower orb, faded before it reaches his face. */
+.backdrop-grid {
   position: absolute;
-  inset: 38% 0 0 0;
+  inset: 40% 8% 6% 8%;
   background-image: radial-gradient(
-    color-mix(in srgb, var(--ink) 30%, transparent) 1px,
+    color-mix(in srgb, black 34%, transparent) 1px,
     transparent 1px
   );
-  background-size: 14px 14px;
-  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 55%, transparent);
-  mask-image: linear-gradient(to bottom, transparent, #000 55%, transparent);
+  background-size: 13px 13px;
+  border-radius: 999px;
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 48%, transparent 92%);
+  mask-image: linear-gradient(to bottom, transparent, #000 48%, transparent 92%);
+  opacity: 0.55;
 }
 
 /* Poster frame — hairline rules that box the hero like a printed page. */

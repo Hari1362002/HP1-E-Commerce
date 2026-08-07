@@ -36,11 +36,12 @@ export default function Hero({ mode }) {
           {/* Portrait — absolute on desktop so it overlaps the type; on small
               screens it drops below, where there is no room to overlap. */}
           <div className="pointer-events-none relative z-10 mx-auto mt-6 w-[62%] max-w-[260px] lg:absolute lg:right-0 lg:top-1/2 lg:mt-0 lg:w-[30%] lg:max-w-[380px] lg:-translate-y-[52%]">
-            {/* Quiet geometry so he isn't floating on bare paper */}
+            {/* A lit orb to stand in front of, rather than bare paper */}
             <div className="backdrop" aria-hidden="true">
-              <span className="backdrop-arch" />
+              <span className="backdrop-glow" />
+              <span className="backdrop-orb" />
+              <span className="backdrop-grid" />
               <span className="backdrop-ring" />
-              <span className="backdrop-dots" />
             </div>
             <Image
               src={profile.photo}
