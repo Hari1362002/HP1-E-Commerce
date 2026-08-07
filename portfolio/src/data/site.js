@@ -95,29 +95,29 @@ export const projects = [
     title: "SDS Technologies",
     kicker: "IT services & training institute",
     client: "SDS Technologies, Palani",
-    year: "2025",
+    year: "2026",
     shot: "/shots/sds.png",
-    live: "https://sdstechzone.in",
-    stack: ["HTML", "CSS", "JavaScript", "Responsive"],
+    live: "https://hari1362002.github.io/sds-technologies/",
+    stack: ["React", "Vite", "Three.js", "Tailwind CSS"],
     summary:
-      "An agency that also teaches — nine courses and six services competing for the same homepage.",
+      "An agency that also teaches, and hires — three different visitors landing on one homepage.",
     points: [
       {
         label: "Analysis",
-        text: "Visitors arrive for one of two reasons: hire them, or enrol. A single generic 'contact us' page served neither.",
+        text: "Someone arrives wanting work done, wanting to learn, or wanting a job. One generic 'contact us' served none of the three.",
       },
       {
         label: "R&D",
-        text: "Gave services and courses their own tracks, each card carrying its own call to action, so a visitor never has to work out which one they are.",
+        text: "Split the nav by intent — services, courses, careers — so each visitor gets their own track and their own call to action instead of a shared form.",
       },
       {
         label: "Build",
-        text: "Dark hero with the brand gradient, service and course grids, portfolio section, and a WhatsApp button pinned on every screen — the way local clients actually get in touch.",
+        text: "A Three.js hero that turns a phone in real time over the brand gradient, intent-led sections beneath it, and WhatsApp pinned on every screen — how local clients actually make contact.",
       },
     ],
     stats: [
-      ["9", "Courses listed"],
-      ["6", "Service tracks"],
+      ["3", "Visitor intents"],
+      ["3D", "Real-time hero"],
       ["1 tap", "To WhatsApp"],
     ],
   },
