@@ -128,6 +128,25 @@ body {
   font-weight: 500;
 }
 
+/* The intro line. Same mono voice as .label but set large enough to read as
+   a sentence, with generous leading — every word is uppercase, so the lines
+   need air or they stack into a wall. */
+.intro {
+  font-family: var(--font-jetbrains), monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.13em;
+  font-size: 0.75rem;
+  line-height: 2.1;
+  font-weight: 500;
+}
+
+@media (min-width: 640px) {
+  .intro {
+    font-size: 0.875rem;
+    letter-spacing: 0.14em;
+  }
+}
+
 /* --- Portrait ------------------------------------------------------
    The source is a selfie, so his arm runs out of frame and the cut-out ends
    in a hard amputated edge at the bottom right. Two gradients, intersected,

@@ -13,12 +13,14 @@ export default function Hero({ mode }) {
       {/* The hero is set as a printed plate: ruled edge, crop marks, and the
           portrait standing in front of the type rather than beside it. */}
       <div className="poster px-5 py-8 sm:px-8 sm:py-12">
-        {/* Intro line */}
-        <p className="rise max-w-xl text-[15px] leading-relaxed text-muted sm:text-lg">
-          <span aria-hidden="true">👋</span> my name is{" "}
-          <span className="text-ink">Hariprasath</span> and I am a{" "}
-          <span className="script text-ink">full stack developer</span> and{" "}
-          <span className="script text-ink">video editor</span>
+        {/* Intro line. All caps in the mono voice, with the name dropped into
+            Anton at 1.7× — one word in a different typeface carries more than
+            bolding it would, and it is the only word here worth remembering. */}
+        <p className="rise intro max-w-2xl text-muted">
+          <span aria-hidden="true">👋</span> Hi, my name is{" "}
+          <span className="display text-[1.7em] text-ink">Hariprasath</span> and I
+          am a freelance <span className="text-ink">full stack developer</span> and{" "}
+          <span className="text-ink">video editor</span>
         </p>
 
         {/* Type and portrait share one stacking context. The cut-out sits on
