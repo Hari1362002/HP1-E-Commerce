@@ -14,7 +14,7 @@ export const profile = {
   photo: "/hari.jpg",
   available: true,
   bio: [
-    "MCA graduate who builds the front end and cuts the video. I ship real, working products — storefronts, dashboards, browser tools — and I edit the reels that sell them.",
+    "MCA graduate who builds the front end and cuts the video. Freelance work for businesses in Palani and Coimbatore, plus my own storefronts, dashboards and browser tools — and the reels that sell them.",
     "Every project below started the same way: watch how people actually use the thing, find where they get stuck, then build only what removes the friction.",
   ],
 };
@@ -43,9 +43,10 @@ export const resumes = [
 /**
  * Projects.
  *
- * `live` — paste the deployed URL here. Leave it as "" and the card simply
- * shows the code link instead of a broken button.
- *
+ * `kind`   — "freelance" for paid client work, "personal" for self-directed
+ *            builds. The work section groups on this, and client work leads.
+ * `live`   — deployed URL. Leave "" and the card drops the button rather
+ *            than shipping a dead link. Same for `code`.
  * `points` — three of them, always in the same order:
  *   1. Analysis — what I looked at before writing anything
  *   2. R&D      — what I tested, measured or figured out
@@ -53,8 +54,77 @@ export const resumes = [
  */
 export const projects = [
   {
-    slug: "autospare",
+    slug: "emas",
+    kind: "freelance",
     index: "01",
+    title: "EMAS Organic",
+    kicker: "Wellness storefront & dealer portal",
+    client: "EMAS — Organic · Naturals · Ayurveda",
+    year: "2026",
+    shot: "/shots/emas.png",
+    live: "https://hari1362002.github.io/emas1/",
+    code: "https://github.com/Hari1362002/emas1",
+    stack: ["React", "Vite", "Tailwind CSS", "React Router"],
+    summary:
+      "A honey and ayurveda brand that sells two ways at once — direct to shoppers, and through a dealer network that needs its own rules in writing.",
+    points: [
+      {
+        label: "Analysis",
+        text: "Two audiences, one site. Shoppers want the product; dealers want the package, the ethics code and the rules. Mixing them buries both.",
+      },
+      {
+        label: "R&D",
+        text: "Split the routes — storefront on one path, dealer and policy pages on another — so each audience gets a straight run without the other's content in the way.",
+      },
+      {
+        label: "Build",
+        text: "Hero slider, category grid, product grid, certifications and dealer packages as separate components. Ships to GitHub Pages, so hosting costs the client nothing.",
+      },
+    ],
+    stats: [
+      ["2", "Audiences, one site"],
+      ["ISO 9001", "Certified brand"],
+      ["₹0", "Hosting cost"],
+    ],
+  },
+  {
+    slug: "sds",
+    kind: "freelance",
+    index: "02",
+    title: "SDS Technologies",
+    kicker: "IT services & training institute",
+    client: "SDS Technologies, Palani",
+    year: "2025",
+    shot: "/shots/sds.png",
+    live: "https://sdstechzone.in",
+    code: "",
+    stack: ["HTML", "CSS", "JavaScript", "Responsive"],
+    summary:
+      "An agency that also teaches — nine courses and six services competing for the same homepage.",
+    points: [
+      {
+        label: "Analysis",
+        text: "Visitors arrive for one of two reasons: hire them, or enrol. A single generic 'contact us' page served neither.",
+      },
+      {
+        label: "R&D",
+        text: "Gave services and courses their own tracks, each card carrying its own call to action, so a visitor never has to work out which one they are.",
+      },
+      {
+        label: "Build",
+        text: "Dark hero with the brand gradient, service and course grids, portfolio section, and a WhatsApp button pinned on every screen — the way local clients actually get in touch.",
+      },
+    ],
+    stats: [
+      ["9", "Courses listed"],
+      ["6", "Service tracks"],
+      ["1 tap", "To WhatsApp"],
+    ],
+  },
+  {
+    slug: "autospare",
+    kind: "personal",
+    index: "03",
     title: "Thirumalai Autospare World",
     kicker: "Two-wheeler parts storefront",
     year: "2026",
@@ -86,7 +156,8 @@ export const projects = [
   },
   {
     slug: "ecommerce",
-    index: "02",
+    kind: "personal",
+    index: "04",
     title: "HP Store",
     kicker: "Furniture e-commerce",
     year: "2026",
@@ -118,7 +189,8 @@ export const projects = [
   },
   {
     slug: "dashboard",
-    index: "03",
+    kind: "personal",
+    index: "05",
     title: "Daily",
     kicker: "Expenses · Tasks · Fitness",
     year: "2026",
@@ -150,7 +222,8 @@ export const projects = [
   },
   {
     slug: "resizer",
-    index: "04",
+    kind: "personal",
+    index: "06",
     title: "Image Toolkit",
     kicker: "Resize · Scan · PDF",
     year: "2026",

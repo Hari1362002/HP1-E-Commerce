@@ -44,8 +44,20 @@ function BrowserFrame({ src, alt, host, priority }) {
 }
 
 export default function ProjectCard({ project, flip, priority }) {
-  const { index, title, kicker, year, shot, live, code, stack, summary, points, stats } =
-    project;
+  const {
+    index,
+    title,
+    kicker,
+    client,
+    year,
+    shot,
+    live,
+    code,
+    stack,
+    summary,
+    points,
+    stats,
+  } = project;
 
   return (
     <article className="border-t border-rule py-14 sm:py-20">
@@ -56,6 +68,12 @@ export default function ProjectCard({ project, flip, priority }) {
           <div>
             <h3 className="display text-[clamp(1.75rem,5vw,3.5rem)]">{title}</h3>
             <p className="script mt-1 text-lg text-muted sm:text-xl">{kicker}</p>
+            {/* Who paid for it — the detail a recruiter scans for */}
+            {client && (
+              <p className="label mt-3 inline-block rounded-full border border-rule px-3 py-1.5 text-muted">
+                Client · {client}
+              </p>
+            )}
           </div>
         </div>
         <span className="label text-muted">{year}</span>
@@ -131,15 +149,17 @@ export default function ProjectCard({ project, flip, priority }) {
                 <ArrowIcon className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </a>
             )}
-            <a
-              href={code}
-              target="_blank"
-              rel="noreferrer noopener"
-              className="group flex items-center gap-2 rounded-full border border-ink px-6 py-3.5 text-sm font-medium transition-colors hover:bg-ink hover:text-paper"
-            >
-              View code
-              <ArrowIcon className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </a>
+            {code && (
+              <a
+                href={code}
+                target="_blank"
+                rel="noreferrer noopener"
+                className="group flex items-center gap-2 rounded-full border border-ink px-6 py-3.5 text-sm font-medium transition-colors hover:bg-ink hover:text-paper"
+              >
+                View code
+                <ArrowIcon className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </a>
+            )}
           </div>
         </div>
       </div>
