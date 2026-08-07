@@ -36,7 +36,7 @@ export const metadata = {
     template: "%s — Hariprasath E",
   },
   description:
-    "Frontend developer and video editor based in Coimbatore. Storefronts, dashboards and browser tools — plus the reels that sell them.",
+    "Full stack developer and video editor based in Coimbatore, working remotely with clients anywhere. Storefronts, dashboards and browser tools — plus the reels that sell them.",
   openGraph: {
     title: "Hariprasath E — Full Stack Developer & Video Editor",
     description:

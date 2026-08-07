@@ -99,7 +99,7 @@ export default function Hero({ mode }) {
             </p>
             <p className="mt-4 max-w-sm text-[15px] leading-relaxed text-muted">
               Front end to database, then the reel that sells it. Based in
-              Coimbatore, working with clients across Tamil Nadu.
+              Coimbatore, working with clients anywhere.
             </p>
           </div>
 

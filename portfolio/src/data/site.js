@@ -17,7 +17,7 @@ export const profile = {
   // Background lifted out, so the display type can sit behind him.
   photo: "/hari-cutout.png",
   bio: [
-    "MCA graduate who builds the whole stack and cuts the video. Freelance work for businesses in Palani and Coimbatore, plus my own storefronts, dashboards and browser tools — and the reels that sell them.",
+    "MCA graduate who builds the whole stack and cuts the video. Freelance work for real businesses, plus my own storefronts, dashboards and browser tools — and the reels that sell them. I work remotely, so where you are makes no difference.",
     "Every project below started the same way: watch how people actually use the thing, find where they get stuck, then build only what removes the friction.",
   ],
 };
