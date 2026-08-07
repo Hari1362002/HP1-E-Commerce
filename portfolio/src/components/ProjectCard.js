@@ -52,7 +52,6 @@ export default function ProjectCard({ project, flip, priority }) {
     year,
     shot,
     live,
-    code,
     stack,
     summary,
     points,
@@ -136,31 +135,20 @@ export default function ProjectCard({ project, flip, priority }) {
             ))}
           </ul>
 
-          {/* Links */}
-          <div className="mt-8 flex flex-wrap gap-3">
-            {live && (
+          {/* Link — the working site, not the source */}
+          {live && (
+            <div className="mt-8">
               <a
                 href={live}
                 target="_blank"
                 rel="noreferrer noopener"
-                className="group flex items-center gap-2 rounded-full bg-ink px-6 py-3.5 text-sm font-medium text-paper transition-opacity hover:opacity-85"
+                className="group inline-flex items-center gap-2 rounded-full bg-ink px-6 py-3.5 text-sm font-medium text-paper transition-opacity hover:opacity-85"
               >
-                Live site
+                Visit the site
                 <ArrowIcon className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </a>
-            )}
-            {code && (
-              <a
-                href={code}
-                target="_blank"
-                rel="noreferrer noopener"
-                className="group flex items-center gap-2 rounded-full border border-ink px-6 py-3.5 text-sm font-medium transition-colors hover:bg-ink hover:text-paper"
-              >
-                View code
-                <ArrowIcon className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </a>
-            )}
-          </div>
+            </div>
+          )}
         </div>
       </div>
     </article>

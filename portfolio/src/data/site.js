@@ -20,9 +20,10 @@ export const profile = {
   ],
 };
 
+// Share-tracking parameters stripped — they carry referrer data and expire.
 export const links = {
   github: "https://github.com/Hari1362002",
-  linkedin: "https://linkedin.com/in/hari",
+  linkedin: "https://www.linkedin.com/in/hariprasath13",
   instagram: "https://www.instagram.com/hari.edz",
   drive:
     "https://drive.google.com/drive/folders/1Sv-_ZzIGfErRDdVmAFCu4ad6Q5sCZ9ag?usp=share_link",
@@ -47,7 +48,7 @@ export const resumes = [
  * `kind`   — "freelance" for paid client work, "personal" for self-directed
  *            builds. The work section groups on this, and client work leads.
  * `live`   — deployed URL. Leave "" and the card drops the button rather
- *            than shipping a dead link. Same for `code`.
+ *            than shipping a dead link.
  * `points` — three of them, always in the same order:
  *   1. Analysis — what I looked at before writing anything
  *   2. R&D      — what I tested, measured or figured out
@@ -64,7 +65,6 @@ export const projects = [
     year: "2026",
     shot: "/shots/emas.png",
     live: "https://hari1362002.github.io/emas1/",
-    code: "https://github.com/Hari1362002/emas1",
     stack: ["React", "Vite", "Tailwind CSS", "React Router"],
     summary:
       "A honey and ayurveda brand that sells two ways at once — direct to shoppers, and through a dealer network that needs its own rules in writing.",
@@ -98,7 +98,6 @@ export const projects = [
     year: "2025",
     shot: "/shots/sds.png",
     live: "https://sdstechzone.in",
-    code: "",
     stack: ["HTML", "CSS", "JavaScript", "Responsive"],
     summary:
       "An agency that also teaches — nine courses and six services competing for the same homepage.",
@@ -132,7 +131,6 @@ export const projects = [
     year: "2026",
     shot: "/shots/autospare.png",
     live: "https://thirumalai-autospare.vercel.app",
-    code: "https://github.com/Hari1362002/HP1-E-Commerce/tree/main/thirumalai-autospare-world",
     stack: ["HTML", "CSS", "JavaScript", "No build step"],
     summary:
       "Pick your bike brand, pick your model, see only the parts that actually fit it.",
@@ -165,7 +163,6 @@ export const projects = [
     year: "2026",
     shot: "/shots/ecommerce.png",
     live: "https://hp-1-e-commerce.vercel.app",
-    code: "https://github.com/Hari1362002/HP1-E-Commerce/tree/main/ecommerce-website",
     stack: ["Next.js 16", "React", "Tailwind v4", "MongoDB", "JWT"],
     summary:
       "A full storefront — catalogue, wishlist, cart and a checkout you can't reach logged out.",
@@ -198,7 +195,6 @@ export const projects = [
     year: "2026",
     shot: "/shots/dashboard.png",
     live: "https://daily-hp.vercel.app",
-    code: "https://github.com/Hari1362002/daily-hp",
     stack: ["Next.js", "React", "Tailwind", "MongoDB"],
     summary:
       "Three trackers most people abandon, folded into one page that never reloads.",
@@ -231,7 +227,6 @@ export const projects = [
     year: "2026",
     shot: "/shots/resizer.png",
     live: "https://hari1362002.github.io/image-resizer/",
-    code: "https://github.com/Hari1362002/image-resizer",
     stack: ["Vanilla JS", "Canvas API", "PWA", "Offline"],
     summary:
       "Shrink photos, straighten a page shot at an angle, merge it all into one PDF — without a single upload.",
@@ -346,38 +341,3 @@ export const skills = {
   ],
 };
 
-export const timeline = [
-  {
-    period: "2025",
-    title: "Smart Subscription & Payment Management System",
-    org: "Internship · DigiSquare",
-    text: "Full-stack app for subscriptions and automated payments. React front end, Node/Express APIs, MySQL schema, Razorpay integration with real-time invoice generation.",
-    tags: ["React.js", "Node.js", "MySQL", "Razorpay"],
-  },
-  {
-    period: "2024",
-    title: "Automated Bill Letter Generator",
-    org: "MCA Department project",
-    text: "Front end for real-time billing entry with inline validation, backed by SQL storage. Cut manual billing errors out of the department's workflow.",
-    tags: ["HTML5", "CSS3", "JavaScript", "SQL"],
-  },
-  {
-    period: "2023 – 2025",
-    title: "Master of Computer Applications",
-    org: "Bharathiar University, Coimbatore",
-    text: "CGPA 6.5 / 10.",
-    tags: [],
-  },
-  {
-    period: "2020 – 2023",
-    title: "Bachelor of Science",
-    org: "Arulmigu Palaniandavar College of Arts and Culture, Palani",
-    text: "CGPA 7.04 / 10.",
-    tags: [],
-  },
-];
-
-export const certifications = [
-  ["Power BI", "Coursera · 2024"],
-  ["Big Data Computing", "NPTEL · 2023"],
-];
