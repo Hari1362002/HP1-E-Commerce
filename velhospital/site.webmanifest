@@ -1,7 +1,7 @@
 {
-  "name": "Vel Hospital, Coimbatore",
+  "name": "Vel Hospital, Palani",
   "short_name": "Vel Hospital",
-  "description": "A 220-bed multi-speciality hospital in Coimbatore with 24×7 emergency care.",
+  "description": "A 220-bed multi-speciality hospital in Palani with 24×7 emergency care.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",

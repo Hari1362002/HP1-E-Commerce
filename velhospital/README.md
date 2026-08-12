@@ -1,7 +1,7 @@
 # Vel Hospital
 
-Website for a 220-bed multi-speciality hospital in Coimbatore. Glassmorphism UI,
-built for organic search.
+Website for a 220-bed multi-speciality hospital in Palani, Dindigul district.
+Glassmorphism UI, built for organic search.
 
 Plain HTML, CSS and JavaScript. No framework, no build step, no dependencies —
 open `index.html` and it runs.
@@ -110,7 +110,7 @@ never runs.
 
 ## Images
 
-26 photographs in `images/`, downloaded from Pexels and served locally. They were
+29 photographs in `images/`, downloaded from Pexels and served locally. They were
 each checked by eye before use — several candidates were rejected for carrying
 another hospital's signage or branding.
 
@@ -170,6 +170,7 @@ sets its own headers.
 
 - The map is an OpenStreetMap iframe, lazy-loaded. It is the only external
   request besides Google Fonts
-- Coordinates (10.9601, 76.9614) are approximate Coimbatore, not a real address
+- Coordinates (10.4497, 77.5211) are approximate Palani, not a real address. The
+  OpenStreetMap iframe bbox in `contact.html` is derived from them — move both together
 - Doctor photographs are stock models; the names attached to them are invented
 - `prefers-reduced-motion` is honoured — animations and smooth scrolling are cut
