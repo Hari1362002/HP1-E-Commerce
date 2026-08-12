@@ -79,7 +79,7 @@ export default function Hero({ mode }) {
                 height={868}
                 priority
                 sizes="(max-width: 1024px) 90vw, 40vw"
-                className="portrait-mask absolute top-[8%] left-[22%] h-auto w-[112%] max-w-none"
+                className="portrait-edge portrait-mask absolute top-[8%] left-[22%] h-auto w-[112%] max-w-none"
               />
             </div>
           </div>

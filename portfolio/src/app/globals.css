@@ -153,6 +153,24 @@ body {
    dissolve the bottom and that right edge — he emerges from the disc instead
    of being sliced off by it. Masking happens before `filter`, so the drop
    shadow follows the faded silhouette rather than the raw rectangle. */
+/* A stroke traced round the silhouette. Subject cut-outs keep a thin fringe
+   of the old background along the edge — worst in hair — and against a
+   saturated disc that fringe is the first thing you see. Four zero-blur
+   shadows build a hard outline from the alpha channel, and one soft pass
+   feathers it, so the fringe is covered rather than sharpened.
+
+   White in both modes: it separates black hair from orange and from gold
+   equally well, and reads as a deliberate sticker edge rather than a repair.
+
+   This sits on the image, not on the circle that clips it — on the wrapper
+   the same filter would draw a ring around the whole disc. Filters run
+   before masks, so the stroke fades out wherever the mask does. */
+.portrait-edge {
+  filter: drop-shadow(1.4px 0 0 #fff) drop-shadow(-1.4px 0 0 #fff)
+    drop-shadow(0 1.4px 0 #fff) drop-shadow(0 -1.4px 0 #fff)
+    drop-shadow(0 0 1.5px rgb(255 255 255 / 0.85));
+}
+
 .portrait-mask {
   -webkit-mask-image: linear-gradient(to bottom, #000 74%, transparent 99%),
     linear-gradient(to right, #000 82%, transparent 100%);
