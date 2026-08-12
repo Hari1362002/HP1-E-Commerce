@@ -30,6 +30,12 @@
       "runtimeExecutable": "node",
       "runtimeArgs": ["image-resizer/.claude/serve.js"],
       "port": 8124
+    },
+    {
+      "name": "velhospital",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["velhospital/.claude/serve.js"],
+      "port": 8125
     }
   ]
 }

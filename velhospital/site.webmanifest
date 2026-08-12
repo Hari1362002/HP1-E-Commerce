@@ -1,0 +1,14 @@
+{
+  "name": "Vel Hospital, Coimbatore",
+  "short_name": "Vel Hospital",
+  "description": "A 220-bed multi-speciality hospital in Coimbatore with 24×7 emergency care.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#eef4fd",
+  "theme_color": "#0f5fd6",
+  "lang": "en-IN",
+  "icons": [
+    { "src": "favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}

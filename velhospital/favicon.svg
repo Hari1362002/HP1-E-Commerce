@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Vel Hospital">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1a6ee6"/>
+      <stop offset="1" stop-color="#0a3f96"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="16" fill="url(#g)"/>
+  <path d="M52.6 16.4a13.4 13.4 0 0 0-19 0L32 17.9l-1.6-1.5a13.4 13.4 0 1 0-19 19L13 37 32 55.6 51 37l1.6-1.6a13.4 13.4 0 0 0 0-19z"
+        fill="none" stroke="#ffffff" stroke-width="3.4" stroke-linejoin="round" opacity=".35"/>
+  <path d="M28.6 22h6.8v6.6H42v6.8h-6.6V42h-6.8v-6.6H22v-6.8h6.6z" fill="#ffffff"/>
+</svg>
