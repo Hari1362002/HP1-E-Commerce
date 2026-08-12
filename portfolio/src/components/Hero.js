@@ -17,9 +17,9 @@ export default function Hero({ mode }) {
             Anton at 1.7× — one word in a different typeface carries more than
             bolding it would, and it is the only word here worth remembering. */}
         <p className="rise intro max-w-2xl text-muted">
-          <span aria-hidden="true">👋</span> Hi, my name is{" "}
-          <span className="display text-[1.7em] text-ink">Hariprasath</span> and I
-          am a freelance <span className="text-ink">full stack developer</span> and{" "}
+          <span aria-hidden="true">👋</span> Hi, I am{" "}
+          <span className="display text-[1.7em] text-ink">Hariprasath</span> — a
+          freelance <span className="text-ink">full stack developer</span> and{" "}
           <span className="text-ink">video editor</span>
         </p>
 
