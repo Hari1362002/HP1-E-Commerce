@@ -63,24 +63,29 @@ export default function Hero({ mode }) {
               className="backdrop-ring absolute -inset-[9%] rounded-full"
             />
 
-            <div className="portrait absolute inset-0 overflow-hidden rounded-full">
-              <span
-                aria-hidden="true"
-                className="backdrop-orb absolute inset-0"
-              />
-              <span
-                aria-hidden="true"
-                className="backdrop-grid absolute inset-0"
-              />
-              <Image
-                src={profile.photo}
-                alt={`${profile.name}, ${profile.title} and video editor`}
-                width={797}
-                height={868}
-                priority
-                sizes="(max-width: 1024px) 90vw, 40vw"
-                className="portrait-edge portrait-mask absolute top-[8%] left-[22%] h-auto w-[112%] max-w-none"
-              />
+            {/* Filters here, clip one level in: the drop shadow is cast by
+                the circle, and clipping a filtered layer needs clip-path
+                rather than overflow — see .portrait-clip. */}
+            <div className="portrait absolute inset-0">
+              <div className="portrait-clip absolute inset-0">
+                <span
+                  aria-hidden="true"
+                  className="backdrop-orb absolute inset-0"
+                />
+                <span
+                  aria-hidden="true"
+                  className="backdrop-grid absolute inset-0"
+                />
+                <Image
+                  src={profile.photo}
+                  alt={`${profile.name}, ${profile.title} and video editor`}
+                  width={797}
+                  height={868}
+                  priority
+                  sizes="(max-width: 1024px) 90vw, 40vw"
+                  className="portrait-edge portrait-mask absolute top-[8%] left-[22%] h-auto w-[112%] max-w-none"
+                />
+              </div>
             </div>
           </div>
         </div>

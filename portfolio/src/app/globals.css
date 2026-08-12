@@ -153,6 +153,16 @@ body {
    dissolve the bottom and that right edge — he emerges from the disc instead
    of being sliced off by it. Masking happens before `filter`, so the drop
    shadow follows the faded silhouette rather than the raw rectangle. */
+/* The circular crop.
+   `overflow: hidden` with a border-radius does not reliably clip a descendant
+   that has been promoted to its own compositing layer — and the portrait has
+   both a filter and a mask, which is exactly what promotes it. The result was
+   his shoulder escaping the circle on a straight rectangular edge. clip-path
+   is applied by the compositor itself, so a promoted child cannot outrun it. */
+.portrait-clip {
+  clip-path: circle(50% at 50% 50%);
+}
+
 /* A stroke traced round the silhouette. Subject cut-outs keep a thin fringe
    of the old background along the edge — worst in hair — and against a
    saturated disc that fringe is the first thing you see. Four zero-blur
