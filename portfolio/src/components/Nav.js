@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { profile } from "@/data/site";
+import ContactMenu from "./ContactMenu";
 
 const TABS = [
   { id: "dev", label: "Development", href: "/" },
@@ -79,13 +79,7 @@ export default function Nav({ mode }) {
 
           <Switch mode={mode} className="hidden w-[17rem] shrink-0 sm:flex" />
 
-          {/* Contact */}
-          <a
-            href={`mailto:${profile.email}`}
-            className="label hidden shrink-0 rounded-full border border-ink px-5 py-2.5 transition-colors duration-300 hover:bg-ink hover:text-paper md:block"
-          >
-            {profile.email}
-          </a>
+          <ContactMenu />
         </div>
 
         {/* Mobile: the switch gets the room it needs */}

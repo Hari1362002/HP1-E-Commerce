@@ -103,8 +103,11 @@ export default function ProjectCard({ project, flip, priority }) {
           </dl>
         </div>
 
-        {/* The thinking */}
-        <div className="lg:col-span-5">
+        {/* The thinking. A flex column so the call to action can be pushed to
+            the foot of it — the summaries and the three points differ in
+            length from card to card, and without this the button lands at a
+            different height on every one. */}
+        <div className="flex flex-col lg:col-span-5">
           <p className="text-lg leading-relaxed sm:text-xl">{summary}</p>
 
           <ol className="mt-8 space-y-6">
@@ -135,9 +138,11 @@ export default function ProjectCard({ project, flip, priority }) {
             ))}
           </ul>
 
-          {/* Link — the working site, not the source */}
+          {/* Link — the working site, not the source. `mt-auto` holds it to
+              the bottom of the column so it sits on the same line as every
+              other card's, whatever the copy above it does. */}
           {live && (
-            <div className="mt-8">
+            <div className="mt-auto pt-8">
               <a
                 href={live}
                 target="_blank"
