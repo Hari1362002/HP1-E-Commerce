@@ -153,7 +153,7 @@ export default function Contact({ mode }) {
           <p className="label text-muted">
             © {new Date().getFullYear()} — All rights reserved.
           </p>
-          <a href="#top" className="label text-muted transition-colors hover:text-ink">
+          <a href="#top" className="label -my-2 py-2 text-muted transition-colors hover:text-ink">
             Back to top ↑
           </a>
         </div>

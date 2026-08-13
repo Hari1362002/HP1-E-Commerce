@@ -84,7 +84,7 @@ export default function ProjectCard({ project, flip, priority }) {
         }`}
       >
         {/* Screenshot */}
-        <div className="lg:col-span-7">
+        <div className="min-w-0 lg:col-span-7">
           <BrowserFrame
             src={shot}
             alt={`${title} — homepage screenshot`}
@@ -95,9 +95,9 @@ export default function ProjectCard({ project, flip, priority }) {
           {/* Stats strip */}
           <dl className="mt-6 grid grid-cols-3 gap-4 border-t border-rule pt-6">
             {stats.map(([value, caption]) => (
-              <div key={caption}>
-                <dt className="display text-xl sm:text-2xl">{value}</dt>
-                <dd className="label mt-1.5 text-muted">{caption}</dd>
+              <div key={caption} className="min-w-0">
+                <dt className="display break-words text-xl sm:text-2xl">{value}</dt>
+                <dd className="label mt-1.5 break-words text-muted">{caption}</dd>
               </div>
             ))}
           </dl>
@@ -107,7 +107,7 @@ export default function ProjectCard({ project, flip, priority }) {
             the foot of it — the summaries and the three points differ in
             length from card to card, and without this the button lands at a
             different height on every one. */}
-        <div className="flex flex-col lg:col-span-5">
+        <div className="flex min-w-0 flex-col lg:col-span-5">
           <p className="text-lg leading-relaxed sm:text-xl">{summary}</p>
 
           <ol className="mt-8 space-y-6">

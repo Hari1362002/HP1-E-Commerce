@@ -103,7 +103,7 @@ export default function ContactMenu() {
   ];
 
   return (
-    <div ref={wrapRef} className="relative shrink-0">
+    <div ref={wrapRef} className="relative z-50 shrink-0">
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
@@ -122,7 +122,7 @@ export default function ContactMenu() {
       {open && (
         <div
           role="menu"
-          className="absolute right-0 top-[calc(100%+0.6rem)] w-[16.5rem] overflow-hidden rounded-2xl border border-rule bg-card shadow-[0_20px_50px_-20px_rgb(0_0_0/0.4)]"
+          className="absolute right-0 top-[calc(100%+0.6rem)] z-50 w-[min(16.5rem,calc(100vw-2.5rem))] overflow-hidden rounded-2xl border border-rule bg-card shadow-[0_20px_50px_-20px_rgb(0_0_0/0.4)]"
         >
           {items.map(({ href, Icon, label, value }, i) => (
             <a

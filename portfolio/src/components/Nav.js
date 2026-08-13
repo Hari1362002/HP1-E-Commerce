@@ -35,7 +35,7 @@ function Switch({ mode, className = "" }) {
           key={tab.id}
           href={tab.href}
           aria-current={mode === tab.id ? "page" : undefined}
-          className={`label relative z-10 flex-1 basis-0 rounded-full py-2 text-center transition-colors duration-300 ${
+          className={`label relative z-10 flex-1 basis-0 rounded-full py-2.5 text-center transition-colors duration-300 ${
             mode === tab.id ? "text-paper" : "text-muted hover:text-ink"
           }`}
         >
@@ -65,7 +65,7 @@ export default function Nav({ mode }) {
       }`}
     >
       <div className="mx-auto max-w-[1400px] px-5 sm:px-8">
-        <div className="flex h-16 items-center justify-between gap-4 sm:h-20">
+        <div className="flex h-14 items-center justify-between gap-4 sm:h-20">
           {/* Mark */}
           <Link href="/" className="group flex min-w-0 items-baseline gap-2">
             <span className="display truncate text-xl sm:text-2xl">
@@ -83,7 +83,7 @@ export default function Nav({ mode }) {
         </div>
 
         {/* Mobile: the switch gets the room it needs */}
-        <Switch mode={mode} className="mb-3 w-full sm:hidden" />
+        <Switch mode={mode} className="mb-2.5 w-full sm:hidden" />
       </div>
     </header>
   );
