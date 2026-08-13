@@ -151,7 +151,7 @@ export default function Contact({ mode }) {
       <div className="mx-auto max-w-[1400px] px-5 sm:px-8">
         <div className="flex flex-wrap items-center justify-between gap-3 border-t border-rule py-8">
           <p className="label text-muted">
-            © {new Date().getFullYear()} — {profile.title}
+            © {new Date().getFullYear()} — All rights reserved.
           </p>
           <a href="#top" className="label text-muted transition-colors hover:text-ink">
             Back to top ↑

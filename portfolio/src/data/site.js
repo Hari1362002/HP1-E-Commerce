@@ -17,8 +17,8 @@ export const profile = {
   // Background lifted out, so the display type can sit behind him.
   photo: "/hari-cutout.png",
   bio: [
-    "MCA graduate who builds the whole stack and cuts the video. Freelance work for real businesses, plus my own storefronts, dashboards and browser tools — and the reels that sell them. I work remotely, so where you are makes no difference.",
-    "Every project below started the same way: watch how people actually use the thing, find where they get stuck, then build only what removes the friction.",
+    "An MCA graduate who builds the whole stack and cuts the video. Freelance work for real businesses, plus my own storefronts, dashboards and browser tools — and the reels that sell them. I work remotely, so where you are makes no difference.",
+    "Every project here started the same way: watch how people actually use the thing, find where they get stuck, then build only what removes the friction.",
   ],
 };
 
@@ -102,11 +102,11 @@ export const projects = [
     live: "https://hari1362002.github.io/sds-technologies/",
     stack: ["React", "Vite", "Three.js", "Tailwind CSS"],
     summary:
-      "An agency that also teaches, and hires — three different visitors landing on one homepage.",
+      "An agency that also teaches and hires — three different visitors landing on one homepage.",
     points: [
       {
         label: "Analysis",
-        text: "Someone arrives wanting work done, wanting to learn, or wanting a job. One generic 'contact us' served none of the three.",
+        text: "Someone arrives wanting work done, wanting to learn, or wanting a job. One generic “contact us” served none of the three.",
       },
       {
         label: "R&D",
@@ -147,7 +147,7 @@ export const projects = [
       },
       {
         label: "Build",
-        text: "Brand → model → fitting parts, in three clicks. Plain JS, zero dependencies, so it hosts free and loads instantly.",
+        text: "Brand → model → fitting parts, in three clicks. Plain JS, zero dependencies, so it costs nothing to host and loads instantly.",
       },
     ],
     stats: [
@@ -203,7 +203,7 @@ export const projects = [
     points: [
       {
         label: "Analysis",
-        text: "Three separate apps for money, tasks and workouts means three habits to keep. Almost nobody keeps all three.",
+        text: "Three separate apps for money, tasks and workouts mean three habits to keep. Almost nobody keeps all three.",
       },
       {
         label: "R&D",
@@ -257,7 +257,7 @@ export const projects = [
 export const videoWork = {
   headline: "Cuts that hold attention past the third second.",
   summary:
-    "Short-form reels, YouTube edits and social graphics — shot list to colour grade to the caption card.",
+    "Short-form reels, YouTube edits and social graphics — from the shot list to the colour grade to the caption card.",
   services: [
     {
       n: "01",
@@ -266,7 +266,7 @@ export const videoWork = {
     },
     {
       n: "02",
-      title: "Colour & grade",
+      title: "Colour grading",
       text: "DaVinci Resolve for correction and look development, so footage from different phones still cuts together.",
     },
     {
@@ -289,7 +289,7 @@ export const videoWork = {
     "Photoshop",
   ],
   proof: [
-    ["@hari.edz", "Personal reel page, every edit self-cut"],
+    ["@hari.edz", "My own reel page — every edit cut by me"],
     ["College events", "Posters, banners and social sets"],
     ["Short form", "Reels, YouTube edits, promo cuts"],
   ],
