@@ -53,7 +53,13 @@ body{
   background:#eef4fd;
   overflow-x:hidden;
   -webkit-font-smoothing:antialiased;
+  -webkit-tap-highlight-color:rgba(15,95,214,.14);
 }
+
+/* Scroll lock for the mobile menu is applied inside the ≤900px media query,
+   not here — see the mobile block below. Scoping it to the breakpoint means a
+   stranded `is-nav-open` class simply stops applying once the viewport grows,
+   so the page can never be left unscrollable on desktop. */
 img{max-width:100%;height:auto;display:block}
 a{color:inherit;text-decoration:none}
 button,input,select,textarea{font:inherit;color:inherit}
@@ -838,20 +844,49 @@ tbody td b{font-family:var(--f-disp);color:var(--ink)}
 
 @media (max-width:900px){
   :root{--head:70px}
+
+  /* set by main.js while the menu is open; only ever active at this width */
+  html.is-nav-open,
+  html.is-nav-open body{overflow:hidden}
+
   .nav{
     position:fixed;inset:calc(var(--head) + 14px) 20px auto 20px;
     flex-direction:column;align-items:stretch;gap:2px;
     padding:14px;border-radius:var(--r-lg);
-    background:rgba(255,255,255,.9);
-    backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);
+    /* opaque by default: the panel sits over photographs, and older Android
+       WebViews have no backdrop-filter to soften what is behind it */
+    background:#fff;
     border:1px solid var(--brd);box-shadow:var(--sh-lg);
     opacity:0;visibility:hidden;transform:translateY(-12px);
     transition:opacity .25s,transform .25s,visibility .25s;
+    /* a short landscape viewport must not clip the last link */
+    max-height:calc(100dvh - var(--head) - 42px);
+    overflow-y:auto;
+    overscroll-behavior:contain;
   }
   .nav.is-open{opacity:1;visibility:visible;transform:none}
   .nav a{padding:13px 16px;font-size:1rem}
-  .burger{display:block;margin-left:auto}
-  .head__cta{display:none}
+
+  /* Only go glassy where the blur actually renders, and stay close to opaque:
+     this panel covers headings and photographs, and a menu has to stay
+     readable before it gets to look like glass. */
+  @supports ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+    .nav{
+      background:rgba(255,255,255,.96);
+      backdrop-filter:var(--blur);
+      -webkit-backdrop-filter:var(--blur);
+    }
+  }
+  .burger{display:block;margin-left:auto;order:3}
+
+  /* Emergency number stays reachable — it is the most important control on a
+     hospital site. The label collapses, the tap target does not. */
+  .head__cta{display:flex;order:2;margin-left:auto}
+  .head__cta + .burger{margin-left:6px}
+  .head__phone{padding:0;border:0;background:transparent;gap:0}
+  .head__phone > span:first-child{display:none}
+  .head__phone .chip{width:44px;height:44px}
+  .head__phone .chip svg{width:18px;height:18px}
   .hero__in{grid-template-columns:1fr;padding:22px}
   .hero__art{min-height:auto;order:-1}
   .hero__frame{min-height:340px;border-radius:170px 170px var(--r-md) var(--r-md)}
@@ -866,6 +901,15 @@ tbody td b{font-family:var(--f-disp);color:var(--ink)}
   .shead--split{flex-direction:column;align-items:flex-start}
   .hide-lg{display:block}
   .hide-lg-inline{display:none}
+
+  /* iOS zooms the whole page when a focused field is under 16px */
+  .field input,.field select,.field textarea{font-size:16px}
+
+  /* keep content clear of the notch, which matters most in landscape */
+  .wrap{
+    padding-left:env(safe-area-inset-left);
+    padding-right:env(safe-area-inset-right);
+  }
 }
 
 @media (max-width:680px){

@@ -2,31 +2,80 @@
 (function () {
   'use strict';
 
-  /* ---------- mobile nav ---------- */
+  /* ---------- mobile nav ----------
+     A disclosure menu, so it must close on every exit the user expects:
+     the burger, a link, a tap outside, Escape, back/forward, and growing
+     past the breakpoint where the menu no longer exists. */
   var burger = document.querySelector('.burger');
   var nav = document.querySelector('.nav');
 
   if (burger && nav) {
+    var isOpen = function () {
+      return nav.classList.contains('is-open');
+    };
+
+    var setNav = function (open) {
+      if (open === isOpen()) return;
+      nav.classList.toggle('is-open', open);
+      burger.setAttribute('aria-expanded', String(open));
+      // lock the page behind the panel so the background cannot scroll away
+      document.documentElement.classList.toggle('is-nav-open', open);
+    };
+
+    var close = function (returnFocus) {
+      if (!isOpen()) return;
+      setNav(false);
+      if (returnFocus) burger.focus();
+    };
+
     burger.addEventListener('click', function () {
-      var open = burger.getAttribute('aria-expanded') === 'true';
-      burger.setAttribute('aria-expanded', String(!open));
-      nav.classList.toggle('is-open', !open);
+      setNav(!isOpen());
     });
 
+    // a nav link navigates away — close so the panel is not mid-open on return
     nav.addEventListener('click', function (e) {
-      if (e.target.closest('a')) {
-        burger.setAttribute('aria-expanded', 'false');
-        nav.classList.remove('is-open');
-      }
+      if (e.target.closest('a')) close(false);
+    });
+
+    // tap or click anywhere outside the panel and the burger.
+    // pointerdown rather than click: on iOS a `click` on a non-interactive
+    // element does not reliably reach a document-level listener.
+    document.addEventListener('pointerdown', function (e) {
+      if (!isOpen()) return;
+      if (nav.contains(e.target) || burger.contains(e.target)) return;
+      close(false);
     });
 
     document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && nav.classList.contains('is-open')) {
-        burger.setAttribute('aria-expanded', 'false');
-        nav.classList.remove('is-open');
-        burger.focus();
-      }
+      if (e.key === 'Escape') close(true);
     });
+
+    // Rotating to landscape or resizing past the breakpoint reveals the desktop
+    // nav. Leaving `is-open` set there would keep the body scroll-locked on a
+    // page with no visible way to unlock it.
+    // Test the burger's own computed display rather than a duplicated width:
+    // it is the same breakpoint the stylesheet uses, so the two cannot drift.
+    var closeIfDesktop = function () {
+      if (isOpen() && getComputedStyle(burger).display === 'none') close(false);
+    };
+
+    var resizeTimer;
+    var scheduleCheck = function () {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(closeIfDesktop, 120);
+    };
+
+    // ResizeObserver is the dependable trigger: it reports the layout change
+    // itself, so it survives cases where a `resize` event is never dispatched.
+    if (window.ResizeObserver) {
+      new ResizeObserver(scheduleCheck).observe(document.documentElement);
+    }
+    window.addEventListener('resize', scheduleCheck);
+    window.addEventListener('orientationchange', scheduleCheck);
+
+    // returning via the back button restores the page from cache with the
+    // panel still marked open
+    window.addEventListener('pageshow', function () { close(false); });
   }
 
   /* ---------- header shadow on scroll ---------- */
