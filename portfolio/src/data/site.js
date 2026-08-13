@@ -157,9 +157,41 @@ export const projects = [
     ],
   },
   {
-    slug: "ecommerce",
+    slug: "velhospital",
     kind: "personal",
     index: "04",
+    title: "Vel Hospital",
+    kicker: "Multi-speciality hospital site",
+    year: "2026",
+    shot: "/shots/velhospital.png",
+    live: "",
+    stack: ["HTML", "CSS", "JavaScript", "JSON-LD", "No build step"],
+    summary:
+      "A seven-page site for a 220-bed hospital, built to be found on Google. The hospital is invented — its doctors, prices and numbers are made up, and every page says so in the footer.",
+    points: [
+      {
+        label: "Analysis",
+        text: "Almost nobody browses a hospital site. They arrive frightened, wanting one of two things: the emergency number, or an appointment. Everything else is a distraction from those.",
+      },
+      {
+        label: "R&D",
+        text: "A local hospital lives or dies on organic search, so the pages describe themselves to it — nine kinds of structured data, with the FAQ markup matching the accordion a visitor actually sees rather than being written for the crawler alone.",
+      },
+      {
+        label: "Build",
+        text: "Frosted-glass UI from one set of tokens, and 150 lines of JavaScript that the page does not depend on: reveals are opt-in, so no script means everything is visible instead of blank, and the counters already hold their final figure in the markup.",
+      },
+    ],
+    stats: [
+      ["7", "Pages, all static"],
+      ["9", "Structured data types"],
+      ["0", "Dependencies"],
+    ],
+  },
+  {
+    slug: "ecommerce",
+    kind: "personal",
+    index: "05",
     title: "HP Store",
     kicker: "Furniture e-commerce",
     year: "2026",
@@ -191,7 +223,7 @@ export const projects = [
   {
     slug: "dashboard",
     kind: "personal",
-    index: "05",
+    index: "06",
     title: "Daily",
     kicker: "Expenses · Tasks · Fitness",
     year: "2026",
@@ -223,7 +255,7 @@ export const projects = [
   {
     slug: "resizer",
     kind: "personal",
-    index: "06",
+    index: "07",
     title: "Image Toolkit",
     kicker: "Resize · Scan · PDF",
     year: "2026",
