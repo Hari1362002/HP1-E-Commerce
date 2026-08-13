@@ -164,7 +164,7 @@ export const projects = [
     kicker: "Multi-speciality hospital site",
     year: "2026",
     shot: "/shots/velhospital.png",
-    live: "",
+    live: "https://hari1362002.github.io/HP1-E-Commerce/velhospital/",
     stack: ["HTML", "CSS", "JavaScript", "JSON-LD", "No build step"],
     summary:
       "A seven-page site for a 220-bed hospital, built to be found on Google. The hospital is invented — its doctors, prices and numbers are made up, and every page says so in the footer.",
