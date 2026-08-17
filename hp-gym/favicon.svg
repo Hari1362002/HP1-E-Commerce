@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="HP Gym">
+  <rect width="64" height="64" rx="14" fill="#0a0a0b"/>
+  <rect x="4" y="4" width="56" height="56" rx="11" fill="#e01b12"/>
+  <path d="M14 44V20h6.4v8.6h9.2V20H36v24h-6.4v-9.2h-9.2V44H14Z" fill="#fff"/>
+  <path d="M40 44V20h9.6c5.2 0 8.4 3.1 8.4 8s-3.2 8.1-8.4 8.1h-3.2V44H40Zm6.4-13.2h2.4c1.8 0 2.8-1 2.8-2.7s-1-2.7-2.8-2.7h-2.4v5.4Z" fill="#fff"/>
+</svg>

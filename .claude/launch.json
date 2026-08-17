@@ -36,6 +36,18 @@
       "runtimeExecutable": "node",
       "runtimeArgs": ["velhospital/.claude/serve.js"],
       "port": 8125
+    },
+    {
+      "name": "hp-jewellery",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["hp-jewellery/.claude/serve.js"],
+      "port": 8126
+    },
+    {
+      "name": "hp-gym",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["hp-gym/.claude/serve.js"],
+      "port": 8127
     }
   ]
 }
