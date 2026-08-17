@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://hari1362002.github.io/HP1-E-Commerce/hp-jewellery/sitemap.xml

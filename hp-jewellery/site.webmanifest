@@ -1,0 +1,14 @@
+{
+  "name": "HP Jewellery",
+  "short_name": "HP Jewellery",
+  "description": "Hallmarked 22K gold and certified diamond jewellery, made by hand in Coimbatore.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#07271D",
+  "theme_color": "#07271D",
+  "lang": "en-IN",
+  "icons": [
+    { "src": "favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}
