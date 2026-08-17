@@ -59,7 +59,7 @@ export default function ProjectCard({ project, flip, priority }) {
   } = project;
 
   return (
-    <article className="border-t border-rule py-14 sm:py-20">
+    <article className="border-t border-rule py-12 sm:py-16">
       {/* Header row */}
       <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
         <div className="flex items-baseline gap-4 sm:gap-6">

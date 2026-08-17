@@ -92,12 +92,12 @@ export default function Hero({ mode }) {
 
         {/* Clear of the portrait — on a phone the circle sits directly above
             this line, and at mt-4 the two crowded each other. */}
-        <p className="label mt-10 text-muted lg:mt-12">
+        <p className="label mt-8 text-muted lg:mt-12">
           {isDev ? profile.title : profile.videoTitle}
         </p>
 
         {/* Footer margin — the pull quote, the counts, and the two doors */}
-        <div className="mt-10 grid gap-8 border-t border-rule pt-8 sm:mt-14 lg:grid-cols-12 lg:items-end">
+        <div className="mt-8 grid gap-6 border-t border-rule pt-7 sm:mt-10 sm:gap-8 lg:grid-cols-12 lg:items-end">
           <div className="lg:col-span-5">
             <p className="display text-[clamp(1.5rem,3.5vw,2.5rem)]">
               I build websites
@@ -126,11 +126,11 @@ export default function Hero({ mode }) {
             </div>
           </div>
 
-          <div className="flex flex-wrap gap-3 lg:col-span-4 lg:justify-end">
+          <div className="grid grid-cols-2 gap-3 lg:col-span-4 lg:flex lg:flex-wrap lg:justify-end">
             <Link
               href="/"
               aria-current={isDev ? "page" : undefined}
-              className={`rounded-full px-6 py-4 text-sm font-medium transition-all duration-300 sm:text-base ${
+              className={`rounded-full px-4 py-3.5 text-center text-sm font-medium transition-all duration-300 sm:px-6 sm:py-4 sm:text-base ${
                 isDev
                   ? "bg-ink text-paper"
                   : "border border-rule text-muted hover:border-ink hover:text-ink"
@@ -141,7 +141,7 @@ export default function Hero({ mode }) {
             <Link
               href="/video"
               aria-current={!isDev ? "page" : undefined}
-              className={`rounded-full px-6 py-4 text-sm font-medium transition-all duration-300 sm:text-base ${
+              className={`rounded-full px-4 py-3.5 text-center text-sm font-medium transition-all duration-300 sm:px-6 sm:py-4 sm:text-base ${
                 !isDev
                   ? "bg-ink text-paper"
                   : "border border-rule text-muted hover:border-ink hover:text-ink"

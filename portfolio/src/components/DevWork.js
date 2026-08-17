@@ -34,7 +34,7 @@ function Heading({ text }) {
 export default function DevWork() {
   return (
     <section id="work" className="mx-auto max-w-[1400px] px-5 pb-10 sm:px-8">
-      <div className="max-w-3xl py-10 sm:py-16">
+      <div className="max-w-3xl pt-8 pb-8 sm:pt-12 sm:pb-10">
         <p className="label text-accent">My work</p>
         <h2 className="display mt-5 text-[clamp(2.25rem,7vw,5rem)]">
           {projects.length} websites
@@ -53,8 +53,8 @@ export default function DevWork() {
         if (items.length === 0) return null;
 
         return (
-          <div key={group.kind} className="pt-6">
-            <div className="max-w-2xl border-t-2 border-ink pt-8">
+          <div key={group.kind} className="pt-4">
+            <div className="max-w-2xl border-t-2 border-ink pt-7">
               <p className="label text-accent">
                 {group.label} — {String(items.length).padStart(2, "0")}
               </p>
@@ -64,7 +64,7 @@ export default function DevWork() {
               </p>
             </div>
 
-            <div className="mt-10">
+            <div className="mt-8">
               {items.map((project, i) => (
                 <ProjectCard
                   key={project.slug}

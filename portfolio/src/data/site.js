@@ -189,9 +189,73 @@ export const projects = [
     ],
   },
   {
-    slug: "ecommerce",
+    slug: "hpjewellery",
     kind: "personal",
     index: "05",
+    title: "HP Jewellery",
+    kicker: "Fine jewellery storefront",
+    year: "2026",
+    shot: "/shots/hpjewellery.png",
+    live: "https://hari1362002.github.io/HP1-E-Commerce/hp-jewellery/",
+    stack: ["HTML", "CSS", "JavaScript", "Three.js", "WebGL"],
+    summary:
+      "A storefront for an invented jewellery house, with a gold ring in the hero you can actually pick up and turn.",
+    points: [
+      {
+        label: "Analysis",
+        text: "Jewellery is bought by looking at it from every side. A grid of flat photographs cannot answer the question every buyer has, which is what the piece looks like turned away from the camera.",
+      },
+      {
+        label: "R&D",
+        text: "Built the ring out of primitives rather than loading a model file — a torus for the band, stacked low-segment cylinders for the crown and pavilion so the facets are real. Gold reads as metal because an environment probe lights it; without one it looks like yellow plastic.",
+      },
+      {
+        label: "Build",
+        text: "25 pieces behind a working filter, and a product page that pairs the 3D viewer with photographs. Below 760px the stone drops to a cheaper material, because refraction is what costs a phone its frame rate.",
+      },
+    ],
+    stats: [
+      ["25", "Pieces"],
+      ["0 MB", "Model downloaded"],
+      ["3D", "Ring in the hero"],
+    ],
+  },
+  {
+    slug: "hpgym",
+    kind: "personal",
+    index: "06",
+    title: "HP Gym",
+    kicker: "Strength gym, Coimbatore",
+    year: "2026",
+    shot: "/shots/hpgym.png",
+    live: "https://hari1362002.github.io/HP1-E-Commerce/hp-gym/",
+    stack: ["HTML", "CSS", "JavaScript", "No build step"],
+    summary:
+      "A seven-page site for an invented strength gym — dark, one red accent, and every price on the page.",
+    points: [
+      {
+        label: "Analysis",
+        text: "Gym sites sell transformation photographs. A beginner wants three duller answers: will somebody teach me to lift, what does it cost, and when can I come in.",
+      },
+      {
+        label: "R&D",
+        text: "Put the money question where it can be answered in one tap — three plans on a monthly/yearly toggle with the add-ons in a plain table, instead of the usual \"contact us for pricing\".",
+      },
+      {
+        label: "Build",
+        text: "Programmes and coaches both filterable, a weekly timetable, and a free-trial form. The whole dark look runs off one red accent, so re-skinning it means changing a single token.",
+      },
+    ],
+    stats: [
+      ["7", "Pages"],
+      ["9", "Programmes"],
+      ["0", "Dependencies"],
+    ],
+  },
+  {
+    slug: "ecommerce",
+    kind: "personal",
+    index: "07",
     title: "HP Store",
     kicker: "Furniture e-commerce",
     year: "2026",
@@ -223,7 +287,7 @@ export const projects = [
   {
     slug: "dashboard",
     kind: "personal",
-    index: "06",
+    index: "08",
     title: "Daily",
     kicker: "Expenses · Tasks · Fitness",
     year: "2026",
@@ -255,7 +319,7 @@ export const projects = [
   {
     slug: "resizer",
     kind: "personal",
-    index: "07",
+    index: "09",
     title: "Image Toolkit",
     kicker: "Resize · Scan · PDF",
     year: "2026",
