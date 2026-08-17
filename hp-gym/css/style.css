@@ -437,7 +437,9 @@ p{margin:0}
   color:var(--white);
   line-height:1;
 }
-.chip span{
+/* direct child only — the counter inside <b> is a span too, and it must keep
+   the display face rather than pick up the small caption styling */
+.chip > span{
   display:block;
   font-size:10.5px;
   font-weight:700;
@@ -446,7 +448,7 @@ p{margin:0}
   color:var(--dim);
   margin-top:6px;
 }
-.chip--red span{color:rgba(255,255,255,.82)}
+.chip--red > span{color:rgba(255,255,255,.82)}
 
 /* ---------- marquee ---------- */
 .ticker{
