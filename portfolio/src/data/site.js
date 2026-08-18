@@ -33,8 +33,8 @@ export const links = {
 
 export const resumes = [
   {
-    label: "Frontend Developer",
-    file: "/resume/Hariprasath-Frontend-Developer.pdf",
+    label: "Full Stack Developer",
+    file: "/resume/Hariprasath-Full-Stack-Developer.pdf",
     meta: "PDF · 1 page",
   },
   {
