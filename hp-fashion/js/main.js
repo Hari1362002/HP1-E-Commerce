@@ -144,12 +144,11 @@
         }).join(""));
     }
 
-    host.innerHTML = section.varieties.map(function (v, i) {
+    host.innerHTML = section.varieties.map(function (v) {
       var list = items.filter(function (p) { return p.variety === v.slug; });
       return '<section class="variety" id="' + esc(v.slug) + '" data-variety="' + esc(v.slug) + '">' +
         '<div class="variety__head">' +
-          '<div><span class="variety__index">' + String(i + 1).padStart(2, "0") + ' &mdash; ' + String(section.varieties.length).padStart(2, "0") + '</span>' +
-          '<h2>' + esc(v.name) + '</h2></div>' +
+          '<div><h2>' + esc(v.name) + '</h2></div>' +
           '<p>' + esc(v.blurb) + '</p>' +
         '</div>' +
         '<div class="grid">' + list.map(cardHTML).join("") + '</div>' +

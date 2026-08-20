@@ -8,7 +8,7 @@
    frame has actually rendered, so until then the still photograph underneath
    is what people see. */
 
-import * as THREE from "three";
+import * as THREE from "./vendor/three.module.min.js";
 
 var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 var coarse = window.matchMedia("(pointer: coarse)").matches;
@@ -150,14 +150,24 @@ function start(stage) {
 
   lightStage(scene);
 
+  var live = false;
+
+  function draw() {
+    renderer.render(scene, camera);
+    if (!live) { live = true; stage.classList.add("is-live"); }
+  }
+
   function resize() {
-    var w = stage.clientWidth, h = stage.clientHeight;
+    var box = stage.getBoundingClientRect();
+    var w = Math.round(stage.clientWidth || box.width);
+    var h = Math.round(stage.clientHeight || box.height);
     if (!w || !h) return;
     camera.aspect = w / h;
     // Pull back on narrow stages so the form never crops at the base.
     camera.position.z = w / h < 0.95 ? 7.9 : 6.6;
     camera.updateProjectionMatrix();
     renderer.setSize(w, h, false);
+    if (live) draw();          // resizing clears the buffer; put it back now
   }
   resize();
   if ("ResizeObserver" in window) new ResizeObserver(resize).observe(stage);
@@ -181,7 +191,6 @@ function start(stage) {
   }
 
   var spin = -0.18;
-  var live = false;
   var clock = new THREE.Clock();
 
   function frame() {
@@ -198,12 +207,15 @@ function start(stage) {
 
     pivot.rotation.y = spin + leanX;
     pivot.rotation.x = leanY;
-
-    renderer.render(scene, camera);
-
-    if (!live) { live = true; stage.classList.add("is-live"); }
+    draw();
   }
+
+  pivot.rotation.y = spin;
+  draw();          // first frame now, so the form is there the moment it is seen
   frame();
+
+  // Fonts and images settling can change the stage box after that first draw.
+  window.addEventListener("load", function () { resize(); draw(); }, { once: true });
 }
 
 var stage = document.querySelector("[data-stage]");

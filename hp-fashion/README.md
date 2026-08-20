@@ -29,10 +29,11 @@ product.html        Detail view, reads ?id= from the catalogue
 about.html          The shop, the rules, the exchange policy
 contact.html        Store details and a fitting-appointment form
 404.html
-css/style.css       Cream and orange palette; the responsive layer lives at the end
+css/style.css       Cream and orange palette, rounded surfaces; responsive layer last
 js/catalogue.js     SECTIONS + PRODUCTS — the single source of truth
 js/main.js          Rendering, filters, search, bag (localStorage), panels
-js/stage.js         WebGL dress form on the landing hero (three.js, ES module)
+js/stage.js         WebGL dress form on the landing hero (ES module)
+js/vendor/          three.js r185, served from the site — no CDN, no import map
 images/             85 photographs
 ```
 
@@ -59,12 +60,18 @@ Then open <http://localhost:4173>.
 ## The landing hero
 
 `js/stage.js` lathes a tailor's dress form from one spline profile and stands it in front
-of a flat CSS disc. three.js arrives from a CDN through an import map, and only
-`index.html` carries it.
+of a flat CSS disc. three.js is vendored into `js/vendor/` and imported by relative path —
+no CDN and no import map, so nothing about the hero depends on a third party being
+reachable or on the browser supporting import maps.
+
+The first frame is drawn synchronously at setup rather than inside the animation loop. A
+backgrounded tab never runs `requestAnimationFrame`, so gating that first paint on the loop
+left the fallback photograph showing. Resizing clears the drawing buffer, so `resize()`
+redraws immediately too.
 
 It fails soft on purpose. The stage keeps a still photograph underneath and only earns
 `.is-live` once a frame has actually rendered, so no WebGL means no blank rectangle. The
-loop also idles when the hero scrolls out of view or the tab is hidden.
+loop idles when the hero scrolls out of view or the tab is hidden.
 
 On touch devices the canvas is `pointer-events: none` with `touch-action: pan-y`, so a
 swipe over the hero is always a scroll and never a drag.
@@ -81,4 +88,5 @@ swipe over the hero is always a scroll and never a drag.
 - The bag persists in `localStorage` under `hpf.bag.v1`. Checkout is deliberately inert:
   this is a portfolio build and takes no payments.
 - Photographs are from [Unsplash](https://unsplash.com) under the Unsplash licence.
-- Fonts are Bodoni Moda and Inter, served by Google Fonts.
+- Type is one family, Plus Jakarta Sans, worked at both ends: 800 for headings, 400 for
+  copy, 300 for lede paragraphs. No display serif.
