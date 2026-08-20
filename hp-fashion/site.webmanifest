@@ -4,7 +4,7 @@
   "description": "Men's, women's and kids' clothing store in Coimbatore.",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#ffffff",
+  "background_color": "#fcfaf7",
+  "theme_color": "#fcfaf7",
   "icons": [{ "src": "favicon.svg", "sizes": "any", "type": "image/svg+xml" }]
 }

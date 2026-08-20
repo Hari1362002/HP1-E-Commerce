@@ -29,7 +29,7 @@ product.html        Detail view, reads ?id= from the catalogue
 about.html          The shop, the rules, the exchange policy
 contact.html        Store details and a fitting-appointment form
 404.html
-css/style.css       White and grey only; colour lives in the photographs
+css/style.css       Warm neutral palette — sand, bone, clay accent
 js/catalogue.js     SECTIONS + PRODUCTS — the single source of truth
 js/main.js          Rendering, filters, search, bag (localStorage), panels
 images/             85 photographs
@@ -50,8 +50,9 @@ Then open <http://localhost:4173>.
 
 ## Notes
 
-- The design is deliberately monochrome — white, grey and near-black — so garment colour
-  is the only colour on screen.
+- The palette is a warm light neutral — bone paper, sand bands, a faint clay wash —
+  with a single clay accent (`#a9603f`) carrying eyebrows, tags, active filters and links.
+  It stays quiet enough that the garments still hold the colour.
 - The bag persists in `localStorage` under `hpf.bag.v1`. Checkout is deliberately inert:
   this is a portfolio build and takes no payments.
 - Photographs are from [Unsplash](https://unsplash.com) under the Unsplash licence.
