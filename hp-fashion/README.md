@@ -32,8 +32,6 @@ contact.html        Store details and a fitting-appointment form
 css/style.css       Cream and orange palette, rounded surfaces; responsive layer last
 js/catalogue.js     SECTIONS + PRODUCTS — the single source of truth
 js/main.js          Rendering, filters, search, bag (localStorage), panels
-js/stage.js         WebGL standing figure on the landing hero (ES module)
-js/vendor/          three.js r185, served from the site — no CDN, no import map
 images/             85 photographs
 ```
 
@@ -59,25 +57,11 @@ Then open <http://localhost:4173>.
 
 ## The landing hero
 
-`js/stage.js` builds a standing model in a slip dress and puts her in front of a flat CSS
-disc. The torso and the dress are lathed from spline profiles and flattened on Z (a person
-is wider across than deep); the limbs are tapered cylinders laid between joint positions,
-with spheres at the shoulders, elbows, knees and ankles so no seam shows. She has no face —
-this is a shop-window model, not a portrait. three.js is vendored into `js/vendor/` and imported by relative path —
-no CDN and no import map, so nothing about the hero depends on a third party being
-reachable or on the browser supporting import maps.
+An orange disc with a circular photograph over it, offset so the disc reads as an echo
+behind the model rather than a plate she is stuck to. Two small cards float over the top.
 
-The first frame is drawn synchronously at setup rather than inside the animation loop. A
-backgrounded tab never runs `requestAnimationFrame`, so gating that first paint on the loop
-left the fallback photograph showing. Resizing clears the drawing buffer, so `resize()`
-redraws immediately too.
-
-It fails soft on purpose. The stage keeps a still photograph underneath and only earns
-`.is-live` once a frame has actually rendered, so no WebGL means no blank rectangle. The
-loop idles when the hero scrolls out of view or the tab is hidden.
-
-On touch devices the canvas is `pointer-events: none` with `touch-action: pan-y`, so a
-swipe over the hero is always a scroll and never a drag.
+One detail worth knowing: `<img width>`/`<img height>` map to used values, so `aspect-ratio`
+is ignored unless `height: auto` is also set. Without it the circle stretches into a lens.
 
 ## Mobile
 
