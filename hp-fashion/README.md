@@ -32,7 +32,7 @@ contact.html        Store details and a fitting-appointment form
 css/style.css       Cream and orange palette, rounded surfaces; responsive layer last
 js/catalogue.js     SECTIONS + PRODUCTS — the single source of truth
 js/main.js          Rendering, filters, search, bag (localStorage), panels
-js/stage.js         WebGL dress form on the landing hero (ES module)
+js/stage.js         WebGL standing figure on the landing hero (ES module)
 js/vendor/          three.js r185, served from the site — no CDN, no import map
 images/             85 photographs
 ```
@@ -59,8 +59,11 @@ Then open <http://localhost:4173>.
 
 ## The landing hero
 
-`js/stage.js` lathes a tailor's dress form from one spline profile and stands it in front
-of a flat CSS disc. three.js is vendored into `js/vendor/` and imported by relative path —
+`js/stage.js` builds a standing model in a slip dress and puts her in front of a flat CSS
+disc. The torso and the dress are lathed from spline profiles and flattened on Z (a person
+is wider across than deep); the limbs are tapered cylinders laid between joint positions,
+with spheres at the shoulders, elbows, knees and ankles so no seam shows. She has no face —
+this is a shop-window model, not a portrait. three.js is vendored into `js/vendor/` and imported by relative path —
 no CDN and no import map, so nothing about the hero depends on a third party being
 reachable or on the browser supporting import maps.
 

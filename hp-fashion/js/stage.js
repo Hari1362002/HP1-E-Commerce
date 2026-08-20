@@ -1,8 +1,8 @@
-/* HP Fashion — the WebGL dress form on the landing page.
+/* HP Fashion — the WebGL figure on the landing page.
 
-   A tailor's mannequin turned on a lathe: one profile curve gives the whole
-   torso, and a walnut post and base stand it up. It idles on a slow turntable
-   and leans a few degrees toward the pointer.
+   A standing model in a slip dress, assembled from a lathed torso, tapered
+   limb segments and spheres at the joints. She idles on a slow turntable and
+   leans a few degrees toward the pointer.
 
    Every failure path here is silent. The stage only gets `.is-live` once a
    frame has actually rendered, so until then the still photograph underneath
@@ -15,70 +15,134 @@ var coarse = window.matchMedia("(pointer: coarse)").matches;
 
 /* ------------------------------------------------------------------ parts */
 
-/* Half of a dress form, read bottom to top: hip, waist, bust, shoulder, neck.
-   These are control points only — the spline below resamples them, because a
-   lathe run straight off this list facets visibly down the silhouette. */
-var PROFILE = [
-  [0.000, -0.860], [0.145, -0.845], [0.208, -0.790], [0.252, -0.670],
-  [0.276, -0.520], [0.281, -0.380], [0.262, -0.220], [0.228, -0.060],
-  [0.208,  0.080], [0.216,  0.200], [0.252,  0.350], [0.288,  0.500],
-  [0.298,  0.610], [0.291,  0.730], [0.276,  0.850], [0.286,  0.940],
-  [0.250,  1.030], [0.172,  1.100], [0.108,  1.140], [0.094,  1.200],
-  [0.058,  1.216], [0.000,  1.222]
+/* A standing figure, blocked in the way a life drawing is: a lathed torso for
+   the curves, tapered bones for the limbs, spheres at the joints so nothing
+   shows a seam. No face — this is a shop-window model, not a portrait. */
+
+/* Torso half-profile, hip to shoulder. Lathed, then flattened on Z, because a
+   person is wider across than they are deep. */
+var TORSO = [
+  [0.000, -0.06], [0.120, -0.035], [0.192,  0.005], [0.228,  0.075],
+  [0.234,  0.150], [0.214,  0.255], [0.184,  0.360], [0.190,  0.435],
+  [0.212,  0.510], [0.236,  0.585], [0.230,  0.665], [0.212,  0.740],
+  [0.240,  0.800], [0.224,  0.856], [0.132,  0.878], [0.000,  0.885]
 ];
 
-function silhouette(samples) {
+/* The dress: bust down to a mid-calf hem, left open at the bottom. */
+var DRESS = [
+  [0.243, 0.705], [0.250, 0.640], [0.222, 0.520], [0.199, 0.430],
+  [0.222, 0.320], [0.252, 0.190], [0.286, 0.010], [0.330, -0.200],
+  [0.378, -0.400], [0.412, -0.545], [0.421, -0.580]
+];
+
+function smooth(points, samples) {
   var curve = new THREE.SplineCurve(
-    PROFILE.map(function (p) { return new THREE.Vector2(p[0], p[1]); })
+    points.map(function (p) { return new THREE.Vector2(p[0], p[1]); })
   );
-  return curve.getPoints(samples).map(function (v) {
-    return new THREE.Vector2(Math.max(v.x, 0), v.y);   // never cross the axis
+  return curve.getPoints(samples).map(function (p) {
+    return new THREE.Vector2(Math.max(p.x, 0), p.y);
   });
 }
 
-export function buildForm(segments) {
-  var group = new THREE.Group();
-
-  var linen = new THREE.MeshStandardMaterial({
-    color: 0xf1e4d4, roughness: 0.92, metalness: 0.0
-  });
-  var walnut = new THREE.MeshStandardMaterial({
-    color: 0x4a3527, roughness: 0.42, metalness: 0.35
-  });
-
-  var line = silhouette(segments < 48 ? 80 : 130);
-
-  var torso = new THREE.Mesh(new THREE.LatheGeometry(line, segments), linen);
-
-  // The orange marking tape a real form is set up with, run down the front.
-  var tape = new THREE.Mesh(
-    new THREE.LatheGeometry(
-      line.map(function (v) { return new THREE.Vector2(v.x * 1.006, v.y); }),
-      5, -0.035, 0.07
-    ),
-    new THREE.MeshStandardMaterial({ color: 0xe2661c, roughness: 0.6, side: THREE.DoubleSide })
+/* A tapered cylinder laid along the line a→b: one limb segment. */
+function bone(a, b, rA, rB, mat, seg) {
+  var dir = new THREE.Vector3().subVectors(b, a);
+  var mesh = new THREE.Mesh(
+    new THREE.CylinderGeometry(rB, rA, dir.length(), seg, 1, true), mat
   );
+  mesh.position.copy(a).addScaledVector(dir, 0.5);
+  mesh.quaternion.setFromUnitVectors(
+    new THREE.Vector3(0, 1, 0), dir.clone().normalize()
+  );
+  return mesh;
+}
 
-  var collar = new THREE.Mesh(new THREE.TorusGeometry(0.112, 0.019, 10, segments), walnut);
-  collar.position.y = 1.135;
-  collar.rotation.x = Math.PI / 2;
+function joint(at, r, mat, seg) {
+  var mesh = new THREE.Mesh(new THREE.SphereGeometry(r, seg, Math.round(seg * 0.6)), mat);
+  mesh.position.copy(at);
+  return mesh;
+}
 
-  var knob = new THREE.Mesh(new THREE.SphereGeometry(0.062, segments, 14), walnut);
-  knob.position.y = 1.30;
+function v(x, y, z) { return new THREE.Vector3(x, y, z || 0); }
 
-  var neckPin = new THREE.Mesh(new THREE.CylinderGeometry(0.022, 0.022, 0.12, 12), walnut);
-  neckPin.position.y = 1.24;
+export function buildFigure(segments) {
+  var group = new THREE.Group();
+  var seg = Math.max(16, Math.round(segments * 0.55));
 
-  var cap = new THREE.Mesh(new THREE.CylinderGeometry(0.10, 0.115, 0.055, segments), walnut);
-  cap.position.y = -0.875;
+  var skin = new THREE.MeshStandardMaterial({ color: 0xd9bda4, roughness: 0.72, metalness: 0 });
+  var cloth = new THREE.MeshStandardMaterial({
+    color: 0xfaf4ec, roughness: 0.94, metalness: 0, side: THREE.DoubleSide
+  });
+  var dark = new THREE.MeshStandardMaterial({ color: 0x2f2119, roughness: 0.55, metalness: 0.05 });
+  var plinth = new THREE.MeshStandardMaterial({ color: 0x4a3527, roughness: 0.42, metalness: 0.35 });
 
-  var post = new THREE.Mesh(new THREE.CylinderGeometry(0.038, 0.048, 0.58, segments), walnut);
-  post.position.y = -1.17;
+  /* ---- torso, neck, head ---- */
+  var torso = new THREE.Mesh(new THREE.LatheGeometry(smooth(TORSO, 90), segments), skin);
+  torso.scale.z = 0.66;
 
-  var foot = new THREE.Mesh(new THREE.CylinderGeometry(0.40, 0.46, 0.05, segments), walnut);
-  foot.position.y = -1.47;
+  var neck = bone(v(0, 0.845), v(0, 0.995), 0.062, 0.052, skin, seg);
 
-  group.add(torso, tape, collar, knob, neckPin, cap, post, foot);
+  var head = new THREE.Mesh(new THREE.SphereGeometry(0.141, segments, Math.round(segments * 0.7)), skin);
+  head.position.set(0, 1.115, 0.006);
+  head.scale.set(0.94, 1.2, 0.9);
+
+  /* Hair as a slightly larger cap, stopped at the nape, plus a low bun. */
+  var hair = new THREE.Mesh(
+    new THREE.SphereGeometry(0.147, segments, Math.round(segments * 0.7), 0, Math.PI * 2, 0, Math.PI * 0.5),
+    dark
+  );
+  hair.position.set(0, 1.122, -0.006);
+  hair.scale.set(0.98, 1.24, 0.97);
+
+  var bun = new THREE.Mesh(new THREE.SphereGeometry(0.062, seg, seg), dark);
+  bun.position.set(0, 1.168, -0.126);
+
+  /* ---- arms, relaxed and a touch away from the body ---- */
+  var arms = new THREE.Group();
+  [-1, 1].forEach(function (side) {
+    var shoulder = v(side * 0.202, 0.792);
+    var elbow = v(side * 0.288, 0.408, 0.014);
+    var wrist = v(side * 0.322, 0.052, 0.034);
+    var hand = v(side * 0.330, -0.068, 0.040);
+    arms.add(
+      joint(shoulder, 0.059, skin, seg),
+      bone(shoulder, elbow, 0.057, 0.045, skin, seg),
+      joint(elbow, 0.045, skin, seg),
+      bone(elbow, wrist, 0.044, 0.034, skin, seg),
+      joint(wrist, 0.034, skin, seg),
+      bone(wrist, hand, 0.033, 0.024, skin, seg)
+    );
+  });
+
+  /* ---- legs, weight on one side so she is standing rather than posed ---- */
+  var legs = new THREE.Group();
+  [-1, 1].forEach(function (side) {
+    var lean = side < 0 ? 0.022 : 0;
+    var hip = v(side * 0.105, 0.055);
+    var knee = v(side * (0.098 + lean), -0.505, lean * 1.6);
+    var ankle = v(side * (0.096 + lean * 0.4), -1.145, lean * 2.4);
+    var toe = v(side * (0.096 + lean * 0.4), -1.262, 0.105 + lean * 2.4);
+    legs.add(
+      bone(hip, knee, 0.110, 0.078, skin, seg),
+      joint(knee, 0.078, skin, seg),
+      bone(knee, ankle, 0.077, 0.052, skin, seg),
+      joint(ankle, 0.052, skin, seg),
+      bone(ankle, toe, 0.051, 0.036, skin, seg)
+    );
+  });
+
+  /* ---- the dress ---- */
+  var dress = new THREE.Mesh(new THREE.LatheGeometry(smooth(DRESS, 80), segments), cloth);
+  dress.scale.z = 0.78;
+
+  var strapL = bone(v(-0.128, 0.845, 0.040), v(-0.100, 0.698, 0.092), 0.015, 0.015, cloth, 8);
+  var strapR = bone(v( 0.128, 0.845, 0.040), v( 0.100, 0.698, 0.092), 0.015, 0.015, cloth, 8);
+
+  /* ---- the plinth she stands on ---- */
+  var disc = new THREE.Mesh(new THREE.CylinderGeometry(0.40, 0.45, 0.05, segments), plinth);
+  disc.position.y = -1.295;
+
+  group.add(torso, neck, head, hair, bun, arms, legs, dress, strapL, strapR, disc);
   return group;
 }
 
@@ -102,8 +166,8 @@ export function buildShadow() {
     })
   );
   mesh.rotation.x = -Math.PI / 2;
-  mesh.position.y = -1.50;
-  mesh.scale.set(0.95, 0.55, 1);
+  mesh.position.y = -1.325;
+  mesh.scale.set(0.85, 0.5, 1);
   return mesh;
 }
 
@@ -141,9 +205,9 @@ function start(stage) {
 
   var scene = new THREE.Scene();
   var camera = new THREE.PerspectiveCamera(30, 1, 0.1, 100);
-  camera.position.set(0, -0.06, 6.6);
+  camera.position.set(0, -0.02, 6.0);
 
-  var form = buildForm(coarse ? 40 : 64);
+  var form = buildFigure(coarse ? 44 : 64);
   var pivot = new THREE.Group();
   pivot.add(form);
   scene.add(pivot, buildShadow());
@@ -164,7 +228,7 @@ function start(stage) {
     if (!w || !h) return;
     camera.aspect = w / h;
     // Pull back on narrow stages so the form never crops at the base.
-    camera.position.z = w / h < 0.95 ? 7.9 : 6.6;
+    camera.position.z = w / h < 0.95 ? 7.1 : 6.0;
     camera.updateProjectionMatrix();
     renderer.setSize(w, h, false);
     if (live) draw();          // resizing clears the buffer; put it back now
