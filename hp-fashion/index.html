@@ -33,6 +33,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 <script>document.documentElement.classList.add("js")</script>
+<script type="importmap">
+{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.185.1/build/three.module.js" } }
+</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -147,15 +150,23 @@
       <a class="btn" href="men.html">Shop menswear</a>
       <a class="btn btn--ghost" href="women.html">Shop womenswear</a>
     </div>
-    <div class="hero__meta">
-      <span>75 pieces on the rail</span>
-      <span>Free alterations</span>
-      <span>48-hour holds</span>
-    </div>
   </div>
   <div class="hero__media">
-    <img src="images/hero-store.jpg" alt="A calm boutique interior with clothing rails and accessories" width="900" height="1200" fetchpriority="high">
+    <div class="hero__disc" aria-hidden="true"></div>
+    <div class="hero__stage" data-stage>
+      <img class="hero__fallback" src="images/hero-store.jpg" alt="The HP Fashion shop floor, rails of cream and ivory clothing" width="900" height="1200" fetchpriority="high">
+      <canvas aria-hidden="true"></canvas>
+    </div>
+    <div class="hero__badge hero__badge--a"><i>&#9733;</i><div><b>4.9</b><span>Customer rating</span></div></div>
+    <div class="hero__badge hero__badge--b"><i>&#10038;</i><div><b>75</b><span>Pieces on the rail</span></div></div>
   </div>
+</section>
+
+<section class="assure">
+  <div><i>&#9986;</i><div><h3>Free alterations</h3><p>For the life of the garment</p></div></div>
+  <div><i>&#8635;</i><div><h3>14-day exchange</h3><p>Unworn, tags on</p></div></div>
+  <div><i>&#9200;</i><div><h3>48-hour holds</h3><p>Reserve online, decide in store</p></div></div>
+  <div><i>&#9788;</i><div><h3>Same-day delivery</h3><p>Anywhere inside Coimbatore</p></div></div>
 </section>
 
 <section class="band band--tight">
@@ -312,5 +323,6 @@
 
 <script src="js/catalogue.js"></script>
 <script src="js/main.js"></script>
+<script type="module" src="js/stage.js"></script>
 </body>
 </html>
