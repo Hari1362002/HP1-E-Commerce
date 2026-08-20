@@ -1,0 +1,10 @@
+{
+  "name": "HP Fashion",
+  "short_name": "HP Fashion",
+  "description": "Men's, women's and kids' clothing store in Coimbatore.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "icons": [{ "src": "favicon.svg", "sizes": "any", "type": "image/svg+xml" }]
+}

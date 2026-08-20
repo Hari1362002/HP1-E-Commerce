@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /product.html
+
+Sitemap: https://hari1362002.github.io/HP1-E-Commerce/hp-fashion/sitemap.xml
