@@ -71,6 +71,10 @@ is ignored on an image unless `height: auto` is set alongside it. Three rules he
 
 - Filters collapse to a single swipeable row that bleeds to the screen edge, so the
   sticky bar stays shallow.
+- The department cards become a thumbnail beside a label. The cover shots are standing
+  full-body portraits, so letterboxing them across a phone cropped everyone off at the
+  waist; a portrait thumbnail keeps the whole figure. On desktop they stay as cards but
+  crop at `object-position: 50% 22%` for the same reason.
 - Hero heights use `svh` — a `vh` hero resizes as the URL bar hides, which reads as the
   page juddering while you scroll.
 - Reveals fade without translating; hover zooms are dropped entirely.

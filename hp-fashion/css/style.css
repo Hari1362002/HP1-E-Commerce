@@ -493,7 +493,7 @@ body[data-locked="true"] { overflow: hidden; }
   font: inherit; color: inherit; text-align: left;
   transition: border-color .22s var(--ease), transform .22s var(--ease);
 }
-.looking__tab img { width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; opacity: .5; transition: opacity .3s var(--ease); }
+.looking__tab img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; object-position: 50% 22%; opacity: .55; transition: opacity .3s var(--ease); }
 .looking__tab::after {
   content: ""; position: absolute; inset: 0;
   background: linear-gradient(to top, rgba(15,22,19,.92) 12%, rgba(15,22,19,.15) 62%);
@@ -592,8 +592,19 @@ body[data-locked="true"] { overflow: hidden; }
   .grid { grid-template-columns: repeat(2, 1fr); gap: 1.75rem 1rem; }
   .card__name { font-size: 1.05rem; }
   .pillars { grid-template-columns: 1fr; }
-  .looking__tabs { grid-template-columns: 1fr; gap: .75rem; }
-  .looking__tab img { aspect-ratio: 21 / 9; }
+  .looking__tabs { grid-template-columns: 1fr; gap: .7rem; }
+  .looking__tab {
+    display: grid; grid-template-columns: 92px 1fr; align-items: center;
+    gap: 1rem; padding: .7rem; overflow: visible;
+  }
+  .looking__tab img {
+    width: 92px; aspect-ratio: 3 / 4; border-radius: 10px;
+    object-position: 50% 18%; opacity: .92;
+  }
+  .looking__tab::after { display: none; }
+  .looking__tab > span { position: static; }
+  .looking__tab strong { font-size: 1.15rem; }
+  .looking__tab[aria-selected="true"] img { opacity: 1; }
   .detail__buy { flex-direction: column; }
   .detail__buy .btn { width: 100%; }
   .footer__grid { grid-template-columns: 1fr; }
