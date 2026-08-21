@@ -29,7 +29,7 @@ product.html        Detail view, reads ?id= from the catalogue
 about.html          The shop, the rules, the exchange policy
 contact.html        Store details and a fitting-appointment form
 404.html
-css/style.css       Cream and orange palette, rounded surfaces; responsive layer last
+css/style.css       Dark green palette with a lime accent; responsive layer last
 js/catalogue.js     SECTIONS + PRODUCTS — the single source of truth
 js/main.js          Rendering, filters, search, bag (localStorage), panels
 images/             85 photographs
@@ -50,18 +50,22 @@ Then open <http://localhost:4173>.
 
 ## Notes
 
-- The palette is cream and orange: `#fdf9f4` paper, `#f6eee4` bands, and one orange
-  doing all the pointing. It ships as two values — `--accent` (`#e2661c`) for fills and
-  graphics, and `--accent-deep` (`#b4490c`) for anything small enough to need 4.5:1 on
-  cream. Never use the bright one for body-size text.
+- The palette is dark green with lime: `#0f1613` paper, `#16201b` raised surfaces, and one
+  lime doing all the pointing. It ships as three values — `--accent` (`#c6f24e`) for fills
+  and glows, `--accent-deep` (`#cdf566`) for small text, and `--on-accent` (`#0f1613`) for
+  anything sitting *on* a lime fill. Never put white on lime.
 
-## The landing hero
+## The home page
 
-An orange disc with a circular photograph over it, offset so the disc reads as an echo
-behind the model rather than a plate she is stuck to. Two small cards float over the top.
+Ordered the way someone actually shops: hero, then **You are looking for…** (three
+department tabs that render that department's whole rail in place), then the modern-wear
+edit, then upcoming designs, then a made-to-order brief, then reviews, then the footer.
 
-One detail worth knowing: `<img width>`/`<img height>` map to used values, so `aspect-ratio`
-is ignored unless `height: auto` is also set. Without it the circle stretches into a lens.
+The department tabs and their lists are rendered by `renderLooking()` in `js/main.js` from
+the same `PRODUCTS` array everything else uses — there is no second copy of the catalogue.
+
+One trap worth knowing: `<img width>`/`<img height>` map to used values, so `aspect-ratio`
+is ignored on an image unless `height: auto` is set alongside it. Three rules here need it.
 
 ## Mobile
 

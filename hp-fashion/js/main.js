@@ -177,6 +177,49 @@
     }
   }
 
+  /* "You are looking for" — three department tabs on the home page. Picking one
+     renders that department's whole rail underneath, grouped by variety. */
+  function renderLooking(tabHost) {
+    var listHost = $("[data-looking-list]");
+    var countEl = $("[data-looking-count]");
+    if (!listHost) return;
+
+    var covers = { men: "images/m-layer-3.jpg", women: "images/w-saree-4.jpg", kids: "images/k-girl-1.jpg" };
+
+    tabHost.innerHTML = SECTIONS.map(function (section, i) {
+      return '<button class="looking__tab" type="button" role="tab" data-looking="' + esc(section.slug) + '"' +
+        ' aria-selected="' + (i === 0 ? "true" : "false") + '">' +
+        '<img src="' + esc(covers[section.slug]) + '" alt="" loading="lazy" width="900" height="562">' +
+        '<span><strong>' + esc(section.label) + '</strong>' +
+        '<small>' + bySection(section.slug).length + ' pieces &middot; ' + section.varieties.length + ' departments</small></span>' +
+      '</button>';
+    }).join("");
+
+    function show(slug) {
+      var section = findSection(slug);
+      listHost.innerHTML = section.varieties.map(function (v) {
+        var list = bySection(slug).filter(function (p) { return p.variety === v.slug; });
+        return '<section class="variety">' +
+          '<div class="variety__head"><h2>' + esc(v.name) + '</h2><p>' + esc(v.blurb) + '</p></div>' +
+          '<div class="grid">' + list.map(cardHTML).join("") + '</div>' +
+        '</section>';
+      }).join("");
+      if (countEl) countEl.textContent = bySection(slug).length + " pieces in " + section.label.toLowerCase();
+      wireReveal();
+    }
+
+    tabHost.addEventListener("click", function (e) {
+      var btn = e.target.closest("[data-looking]");
+      if (!btn) return;
+      $$("[data-looking]", tabHost).forEach(function (b) {
+        b.setAttribute("aria-selected", b === btn ? "true" : "false");
+      });
+      show(btn.getAttribute("data-looking"));
+    });
+
+    show(SECTIONS[0].slug);
+  }
+
   function renderFeatured(host) {
     var picks = (host.getAttribute("data-featured") || "").split(",").map(function (s) { return s.trim(); });
     var items = picks.map(findProduct).filter(Boolean);
@@ -271,7 +314,7 @@
   /* --------------------------------------------------------------- reveal */
 
   function wireReveal() {
-    var els = $$(".reveal");
+    var els = $$('.reveal:not([data-seen])');
     if (!("IntersectionObserver" in window)) {
       els.forEach(function (el) { el.setAttribute("data-seen", "true"); });
       return;
@@ -294,6 +337,9 @@
 
     var dept = $("[data-department]");
     if (dept) renderDepartment(dept);
+
+    var looking = $("[data-looking-tabs]");
+    if (looking) renderLooking(looking);
 
     var feat = $("[data-featured]");
     if (feat) renderFeatured(feat);
