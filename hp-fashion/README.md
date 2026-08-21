@@ -31,7 +31,7 @@ contact.html        Store details and a fitting-appointment form
 404.html
 css/style.css       Dark green palette with a lime accent; responsive layer last
 js/catalogue.js     SECTIONS + PRODUCTS — the single source of truth
-js/main.js          Rendering, filters, search, bag (localStorage), panels
+js/main.js          Rendering, filters, search, bag + wishlist (localStorage), panels
 images/             85 photographs
 ```
 
@@ -76,8 +76,21 @@ is ignored on an image unless `height: auto` is set alongside it. Three rules he
 - Reveals fade without translating; hover zooms are dropped entirely.
 - Every control clears a 44px hit area, icon buttons by size and text links by an
   invisible `::after`.
-- The bag persists in `localStorage` under `hpf.bag.v1`. Checkout is deliberately inert:
-  this is a portfolio build and takes no payments.
+- The bag persists in `localStorage` under `hpf.bag.v1`, the wishlist under `hpf.wish.v1`.
+  Checkout is deliberately inert: this is a portfolio build and takes no payments.
+
+## Wishlist
+
+Every product card carries a heart, and so does the detail view. `paintWish()` is the single
+place that reflects the stored list onto the page — it repaints every `[data-wish]` control
+wherever it happens to be drawn, so the header pip, the cards, the detail button and the
+panel can never disagree. Anything that re-renders cards (a filter, a department tab) calls
+it again.
+
+The heart needs `z-index` to clear `.card__link::after`, which covers the whole card so the
+title link is clickable anywhere. The click handler checks `[data-wish]` before `[data-add]`
+and calls `preventDefault()`, so tapping a heart never follows the card through to the
+product page.
 - Photographs are from [Unsplash](https://unsplash.com) under the Unsplash licence.
 - Type is one family, Plus Jakarta Sans, worked at both ends: 800 for headings, 400 for
   copy, 300 for lede paragraphs. No display serif.

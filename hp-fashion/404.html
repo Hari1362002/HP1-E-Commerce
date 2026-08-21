@@ -56,6 +56,10 @@
       <button class="u-desk" type="button" data-open-panel="[data-panel='search']" aria-label="Search the catalogue">
         <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
       </button>
+      <button type="button" data-open-panel="[data-panel='wish']" aria-label="Open wishlist">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.35-7-9.5A3.9 3.9 0 0 1 12 7a3.9 3.9 0 0 1 7 3.5C19 15.65 12 20 12 20Z"/></svg>
+        <span class="bag-count" data-wish-count data-empty="true">0</span>
+      </button>
       <button type="button" data-open-panel="[data-panel='bag']" aria-label="Open bag">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8h12l-1 12H7L6 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
         <span class="bag-count" data-bag-count data-empty="true">0</span>
@@ -145,6 +149,17 @@
     <div class="bag__total"><span>Subtotal</span><strong data-bag-total>&#8377;0</strong></div>
     <button class="btn btn--block" type="button" data-checkout disabled>Reserve in store</button>
     <p class="bag__note">We hold reserved pieces for 48 hours. Free shipping over &#8377;1,499.</p>
+  </div>
+</aside>
+
+<aside class="bag" data-panel="wish" aria-label="Wishlist">
+  <div class="bag__head">
+    <h2>Saved pieces</h2>
+    <button class="bag__close" type="button" data-close-panel aria-label="Close wishlist">&times;</button>
+  </div>
+  <div class="bag__body" data-wish-body></div>
+  <div class="bag__foot">
+    <p class="bag__note">Saved on this device. Bring the list in and we will pull the sizes for you.</p>
   </div>
 </aside>
 

@@ -5,6 +5,7 @@
   "use strict";
 
   var BAG_KEY = "hpf.bag.v1";
+  var WISH_KEY = "hpf.wish.v1";
   var rupee = new Intl.NumberFormat("en-IN", { style: "currency", currency: "INR", maximumFractionDigits: 0 });
 
   function $(sel, root) { return (root || document).querySelector(sel); }
@@ -86,6 +87,65 @@
     if (checkout) checkout.disabled = !lines.length;
   }
 
+  /* ------------------------------------------------------------- wishlist */
+
+  function readWish() {
+    try { return JSON.parse(localStorage.getItem(WISH_KEY)) || []; }
+    catch (e) { return []; }
+  }
+  function writeWish(ids) {
+    try { localStorage.setItem(WISH_KEY, JSON.stringify(ids)); } catch (e) { /* private mode */ }
+    paintWish();
+  }
+  function toggleWish(id) {
+    var ids = readWish();
+    var at = ids.indexOf(id);
+    if (at > -1) { ids.splice(at, 1); toast("Removed from wishlist"); }
+    else { ids.push(id); toast("Saved to wishlist"); }
+    writeWish(ids);
+  }
+
+  function paintWish() {
+    var ids = readWish();
+
+    $$("[data-wish-count]").forEach(function (el) {
+      el.textContent = ids.length;
+      el.setAttribute("data-empty", ids.length === 0 ? "true" : "false");
+    });
+
+    /* Every heart on the page reflects the same list, wherever it is drawn. */
+    $$("[data-wish]").forEach(function (btn) {
+      var on = ids.indexOf(btn.getAttribute("data-wish")) > -1;
+      btn.setAttribute("aria-pressed", on ? "true" : "false");
+      btn.setAttribute("aria-label", (on ? "Remove " : "Save ") + (btn.getAttribute("data-wish-name") || "this piece") + (on ? " from" : " to") + " wishlist");
+    });
+
+    var body = $("[data-wish-body]");
+    if (!body) return;
+
+    if (!ids.length) {
+      body.innerHTML = '<p class="bag__empty">Nothing saved yet. Tap the heart on any piece to keep it here.</p>';
+      return;
+    }
+
+    body.innerHTML = ids.map(function (id) {
+      var p = findProduct(id);
+      if (!p) return "";
+      return '<div class="bag-line">' +
+        '<img src="' + esc(p.img) + '" alt="' + esc(p.alt) + '" loading="lazy">' +
+        '<div><h4><a href="product.html?id=' + encodeURIComponent(p.id) + '">' + esc(p.name) + '</a></h4>' +
+        '<small>' + esc(varietyName(p.section, p.variety)) + '</small>' +
+        '<div class="bag-line__row">' +
+          '<button class="card__quick" type="button" data-add="' + esc(p.id) + '">Add to bag</button>' +
+          '<span>' + rupee.format(p.price) + '</span>' +
+        '</div>' +
+        '<button class="wish-drop" type="button" data-wish="' + esc(p.id) + '" data-wish-name="' + esc(p.name) + '">Remove</button>' +
+        '</div></div>';
+    }).join("");
+  }
+
+  var HEART = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.35-7-9.5A3.9 3.9 0 0 1 12 7a3.9 3.9 0 0 1 7 3.5C19 15.65 12 20 12 20Z"/></svg>';
+
   /* ---------------------------------------------------------------- panels */
 
   var scrim = null;
@@ -118,6 +178,7 @@
       '<div class="card__media">' +
         '<img src="' + esc(p.img) + '" alt="' + esc(p.alt) + '" loading="lazy" width="900" height="1200">' +
         (p.tag ? '<span class="card__tag">' + esc(p.tag) + '</span>' : "") +
+        '<button class="card__wish" type="button" data-wish="' + esc(p.id) + '" data-wish-name="' + esc(p.name) + '" aria-pressed="false">' + HEART + '</button>' +
       '</div>' +
       '<p class="card__variety">' + esc(varietyName(p.section, p.variety)) + '</p>' +
       '<h3 class="card__name"><a class="card__link" href="product.html?id=' + encodeURIComponent(p.id) + '">' + esc(p.name) + '</a></h3>' +
@@ -173,6 +234,7 @@
           if (on) shown += $$(".card", block).length;
         });
         if (count) count.textContent = shown + " pieces";
+        paintWish();
       });
     }
   }
@@ -206,6 +268,7 @@
       }).join("");
       if (countEl) countEl.textContent = bySection(slug).length + " pieces in " + section.label.toLowerCase();
       wireReveal();
+      paintWish();
     }
 
     tabHost.addEventListener("click", function (e) {
@@ -265,7 +328,10 @@
             }).join("") + '</div>' +
             '<span class="field-label">Size</span>' +
             '<div class="swatches" data-sizes>' + sizes + '</div>' +
-            '<button class="btn btn--block" type="button" data-add-detail="' + esc(p.id) + '">Add to bag</button>' +
+            '<div class="detail__buy">' +
+              '<button class="btn" type="button" data-add-detail="' + esc(p.id) + '">Add to bag</button>' +
+              '<button class="btn btn--ghost detail__wish" type="button" data-wish="' + esc(p.id) + '" data-wish-name="' + esc(p.name) + '" aria-pressed="false">' + HEART + '<span>Save</span></button>' +
+            '</div>' +
             '<dl class="spec">' + p.spec.map(function (row) {
               return '<div><dt>' + esc(row[0]) + '</dt><dd>' + esc(row[1]) + '</dd></div>';
             }).join("") + '</dl>' +
@@ -348,6 +414,7 @@
     if (detail) renderDetail(detail);
 
     paintBag();
+    paintWish();
     wireSearch();
     wireReveal();
 
@@ -359,6 +426,9 @@
         return; }
 
       if (e.target.closest("[data-close-panel]") || e.target.closest("[data-scrim]")) { closeAll(); return; }
+
+      var wish = e.target.closest("[data-wish]");
+      if (wish) { e.preventDefault(); toggleWish(wish.getAttribute("data-wish")); return; }
 
       var add = e.target.closest("[data-add]");
       if (add) { addToBag(add.getAttribute("data-add"), "", 1); return; }
